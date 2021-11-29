@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import "./ItineraryForm.css";
+import "./CreateItinerary.css";
 
 function ItineraryForm() {
   // Create state variables for the fields in the form
@@ -25,9 +25,9 @@ function ItineraryForm() {
       case "days":
         setDays(value);
         break;
-      case "activities":
-        setActivities(value);
-        break;
+      // case "activities":
+        // setActivities(value);
+        // break;
       case "price":
         setPrice(value);
         break;
