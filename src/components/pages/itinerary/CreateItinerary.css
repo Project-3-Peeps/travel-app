@@ -1,0 +1,25 @@
+.container {
+    font-weight: 600;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.form-header {
+    font-weight: 800;
+    font-size: 40px;
+    text-align: center;
+    padding-top: 3%;
+    margin-bottom: 3%;
+}
+
+body,
+html,
+.App,
+#root,
+.outer {
+    width: 100%;
+    height: 100%;
+}
