@@ -19,14 +19,14 @@ function ItineraryForm() {
       case "title":
         setTitle(value);
         break;
-      case "summary":
-        setSummary(value);
+      case "description":
+        setDescription(value);
         break;
       case "days":
         setDays(value);
         break;
-      case "description":
-        setDescription(value);
+      case "activities":
+        setActivities(value);
         break;
       case "price":
         setPrice(value);
@@ -87,10 +87,10 @@ function ItineraryForm() {
           />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="summary">Trip Summary</Form.Label>
+          <Form.Label htmlFor="summary">Trip Description</Form.Label>
           <Form.Control
             value={summary}
-            name="summary"
+            name="description"
             onChange={handleInputChange}
             type="text"
             as="textarea"
@@ -106,10 +106,10 @@ function ItineraryForm() {
           <Form.Control name="days" rows={1} />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
+          <Form.Label>Activities</Form.Label>
           <Form.Control
             value={description}
-            name="description"
+            name="activities"
             onChange={handleInputChange}
             type="text"
             as="textarea"
