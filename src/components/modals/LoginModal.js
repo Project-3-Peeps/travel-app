@@ -1,60 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { loginUser } from "../utils/API";
-import {Auth} from "../utils/auth";
 
 // Import CSS
 import "./Modals.css";
 
-const LoginModal = () => {
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
-  // set state for form validation
-  const [validated] = useState(false);
-  // set state for alert
-  const [showAlert, setShowAlert] = useState(false);
-
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-
-    try {
-      const response = await loginUser(userFormData);
-
-      if (!response.ok) {
-        throw new Error("something went wrong!");
-      }
-
-      const { token, user } = await response.json();
-      console.log(user);
-      Auth.login(token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
-
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
-  };
-
+const LoginModal = (props) => {
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form onSubmit={props.submit} className="LoginModal">
         {/* show alert if server response is bad */}
         <Alert
           dismissible
@@ -65,13 +19,13 @@ const LoginModal = () => {
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your email"
             name="email"
-            onChange={handleInputChange}
-            value={userFormData.email}
+            onChange={props.change}
+            value={props.loginState.email}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -80,13 +34,13 @@ const LoginModal = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Your password"
             name="password"
-            onChange={handleInputChange}
-            value={userFormData.password}
+            onChange={props.change}
+            value={props.loginState.password}
             required
           />
           <Form.Control.Feedback type="invalid">
@@ -94,7 +48,7 @@ const LoginModal = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-          disabled={!(userFormData.email && userFormData.password)}
+          disabled={!(props.loginState.email && props.loginState.password)}
           type="submit"
           variant="success"
         >
