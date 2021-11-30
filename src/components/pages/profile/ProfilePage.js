@@ -2,14 +2,8 @@ import React from "react";
 // the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./ProfilePage.css";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
+
 // images 
 import France from "../homepage/images/france.jpeg";
 import Seattle from "../homepage/images/seattle.jpeg";
@@ -21,7 +15,7 @@ function ProfilePage() {
   return (
     <>
     <div className="itineraries">
-    <h2>My itineraries</h2>
+    <h2>My Itineraries</h2>
     </div>
       <div className="profileCards">
     <Card className="profileCard">
