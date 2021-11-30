@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // this is the css and bootstrap
 import "../NavFooter.css";
@@ -16,7 +16,7 @@ function NavBar() {
        
         <Container fluid>
             <Row>
-                <Navbar bg="light" expand="lg">
+                <Navbar bg="light" expand={false} >
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                         id="offcanvasNavbar"
@@ -36,7 +36,7 @@ function NavBar() {
                         <Link className="appTitle" to="/">Triptinerary</Link>
                     </Col>
                     <Col className="linkPlacement" >
-                        <Link className="loginLinks" to="/login">Login/Lougout</Link>
+                        <Link className="loginLinks" to="/login">Login/Logout</Link>
                         <Link className="loginLinks" to="/signup">Sign Up</Link>
                     </Col>
                 </Navbar>

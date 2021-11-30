@@ -1,12 +1,11 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // importing the pages and modals
 import Homepage from "./components/pages/homepage/Homepage";
 import Footer from "./components/Footer";
 import CreateItinerary from "./components/pages/itinerary/CreateItinerary";
 import ProfilePage from "./components/pages/profile/ProfilePage";
-import LoginModal from "./components/modals/LoginModal";
-import SignupModal from "./components/modals/SignupModal";
+
 import NavBar from "./components/NavBar";
 
 // Import API
@@ -15,12 +14,6 @@ import API from "./utils/API";
 // CSS and bootstrap
 import "./NavFooter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 function App() {
   const [userState, setUserState] = useState({
@@ -132,37 +125,18 @@ function App() {
       <NavBar />
       {/* Here are the routes to the different pages */}
       <Switch>
-        <Route path="/">
-          <Homepage />
-        </Route>
         <Route path="/CreateItinerary">
+          {" "}
           <CreateItinerary />
         </Route>
         <Route path="/ProfilePage">
+          {" "}
           <ProfilePage />
         </Route>
-        <Route path="/CreateItinerary" element={<CreateItinerary />} />
-        <Route path="/ProfilePage" element={<ProfilePage />} />
-        <Route
-          path="/login"
-          element={
-            <LoginModal
-              submit={handleLoginSubmit}
-              change={handleLoginChange}
-              loginState={loginModalState}
-            />
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <SignupModal
-              submit={handleSignupSubmit}
-              change={handleSignupChange}
-              signupState={signupModalState}
-            />
-          }
-        />
+
+        <Route path="/">
+          <Homepage />
+        </Route>
       </Switch>
 
       <Footer />

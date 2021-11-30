@@ -18,11 +18,17 @@ const API = {
   signup: (usrData) => {
     return axios.post(`${URL_PREFIX}/signup`, usrData);
   },
+  profilePage: () => {
+    return axios.get(`${URL_PREFIX}/api/ProfilePage`);
+  },
   getUserData: (id) => {
     return axios.get(`${URL_PREFIX}/api/users/${id}/itineraries`);
   },
   getAllItineraries: () => {
     return axios.get(`${URL_PREFIX}/api/itineraries`);
+  },
+  savedItinerary: () => {
+    return axios.get(`${URL_PREFIX}/api/savedItinerary`);
   },
   createItinerary: (itineraryData, token) => {
     return axios.post(`${URL_PREFIX}/api/createItinerary`, itineraryData, {

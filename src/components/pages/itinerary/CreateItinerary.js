@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Accordion } from "react-bootstrap";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
@@ -117,7 +117,7 @@ function CreateItinerary() {
 
         <hr />
 
-        {/* Day Form Inputs */}
+        Day Form Inputs
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header id="days" name="days" value={days}>
@@ -128,7 +128,7 @@ function CreateItinerary() {
                 <Form.Label>Location</Form.Label>
                 <Form.Control
                   name="city"
-                  value={city}
+                  // value={city}
                   type="text"
                   as="textarea"
                   placeholder="Country or City"
@@ -142,7 +142,7 @@ function CreateItinerary() {
                 <Form.Label>Where</Form.Label>
                 <Form.Control
                   name="where"
-                  value={where}
+                  // value={where}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -153,7 +153,7 @@ function CreateItinerary() {
                 <Form.Label>What</Form.Label>
                 <Form.Control
                   name="what"
-                  value={what}
+                  // value={what}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -168,7 +168,7 @@ function CreateItinerary() {
                 </div>
                 <Form.Control
                   name="cost"
-                  value={cost}
+                  // value={cost}
                   onChange={handleInputChange}
                   type="text"
                   placeholder="100.00"
