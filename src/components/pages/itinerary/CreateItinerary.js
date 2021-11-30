@@ -11,9 +11,22 @@ function CreateItinerary() {
   const [activities, setActivities] = useState("");
   const [price, setPrice] = useState("");
 
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // const [newItinerary, setNewItinerary] = useState({
+  //   title="",
+  //   description="",
+  //   price="",
+  //   days="1",
+  // })
+
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    //   setNewItinerary({
+    //     ...newItinerary,
+    //     [name]:value
+    // })
 
     switch (name) {
       case "title":
@@ -51,38 +64,28 @@ function CreateItinerary() {
     setPrice("");
   };
 
-  // const addDaysClick = (event) => {
-  //   let days = 1;
-  //   console.log(event.target);
-  //   setDays(days++);
-  //   console.log(days);
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // const [day,setDay] = useState(1)
+
+  // <div>
+  //   users.map((itinerary) => (
+
+  //   ))
+  // </div>
 
   return (
-    // Create a itinerary view component with stars / rating logic?
-    // const [stars,setStars]= useState(0);
-    // const ratingClick = event => {
-    // console.log(event.target)
-    // }
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    // const [day,setDay] = useState(1)
-
-    // <div>
-    //   users.map((itinerary) => (
-
-    //   ))
-    // </div>
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
+      {/* Intinerary Preview Info */}
       <Form>
         <Form.Group className="mb-3">
-          <Form.Label htmlFor="title">Title</Form.Label>
+          <Form.Label id="title">Title</Form.Label>
           <Form.Control
             value={title}
             name="title"
             onChange={handleInputChange}
             type="text"
-            placeholder="Title"
+            placeholder="The Lone Star Experience"
           />
         </Form.Group>
         <Form.Group className="mb-3">
@@ -93,53 +96,118 @@ function CreateItinerary() {
             onChange={handleInputChange}
             type="text"
             as="textarea"
-            placeholder="Visible to all users"
+            placeholder="Going to a good old fashion texas rodeo"
             rows={3}
           />
         </Form.Group>
-        <hr />
-        <Form.Group className=" text-bold mb-3">
-          <Form.Label htmlFor="description" name="days">
-            {`Day ${days}`}
-          </Form.Label>
-          <Form.Control name="days" rows={1} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Activities</Form.Label>
-          <Form.Control
-            value={description}
-            name="activities"
-            onChange={handleInputChange}
-            type="text"
-            as="textarea"
-            placeholder="Activities, places to see, restaurants..."
-            rows={5}
-          />
-        </Form.Group>
-        <Form.Label htmlFor="price">Price</Form.Label>
+        <Form.Label id="price">Itinerary Price</Form.Label>
         <Form.Group className="input-group mb-3">
           <div className="input-group-prepend">
-            <span className="input-group-text">$</span>
+            <span className="input-group-text">Points</span>
           </div>
           <Form.Control
             value={price}
             name="price"
             onChange={handleInputChange}
             type="text"
-            placeholder="Amount"
+            placeholder="40"
             rows={3}
           />
         </Form.Group>
-        <Form.Group>
-          <Button className="btn-add rounded-pill" variant="success" size="md">
-            +
+
+        <hr />
+
+        {/* Day Form Inputs */}
+        <Accordion defaultActiveKey="0">
+          <Accordion.Item eventKey="0">
+            <Accordion.Header id="days" name="days" value={days}>
+              Day 1
+            </Accordion.Header>
+            <Accordion.Body>
+              <Form.Group id="location" className="mb-3">
+                <Form.Label>Location</Form.Label>
+                <Form.Control
+                  name="city"
+                  value={city}
+                  type="text"
+                  as="textarea"
+                  placeholder="Country or City"
+                  rows={1}
+                />
+              </Form.Group>
+              {/* Add Activity Start */}
+              <Form.Group id="activities" className="mb-3" value={activities}>
+                <Form.Label>Activities</Form.Label>
+                <br />
+                <Form.Label>Where</Form.Label>
+                <Form.Control
+                  name="where"
+                  value={where}
+                  onChange={handleInputChange}
+                  type="text"
+                  as="textarea"
+                  placeholder="Fort Worth Stockyards"
+                  rows={1}
+                />
+                <br />
+                <Form.Label>What</Form.Label>
+                <Form.Control
+                  name="what"
+                  value={what}
+                  onChange={handleInputChange}
+                  type="text"
+                  as="textarea"
+                  placeholder="Beers, brisket, and bulls"
+                  rows={1}
+                />
+              </Form.Group>
+              <Form.Label id="cost">Cost</Form.Label>
+              <Form.Group className="input-group mb-3">
+                <div className="input-group-prepend">
+                  <span className="input-group-text">$</span>
+                </div>
+                <Form.Control
+                  name="cost"
+                  value={cost}
+                  onChange={handleInputChange}
+                  type="text"
+                  placeholder="100.00"
+                  rows={3}
+                />
+              </Form.Group>
+              {/* Add Activity End */}
+              <Button
+                className="btn-add rounded-pill m-2"
+                variant="success"
+                size="md"
+              >
+                + Add Activity
+              </Button>
+              <Button
+                className="btn-add rounded-pill m-2"
+                variant="danger"
+                size="md"
+              >
+                - Remove Activity
+              </Button>
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        <br />
+        <Form.Group className="text-center">
+          <Button
+            className="btn-add rounded-pill m-2"
+            variant="warning"
+            size="md"
+          >
+            + Add Day
           </Button>
           <Button
-            className="btn-submit rounded-pill"
+            className="btn-submit rounded-pill m-2"
             size="md"
             onClick={handleFormSubmit}
           >
-            Submit
+            Save Itinerary
           </Button>
         </Form.Group>
       </Form>
