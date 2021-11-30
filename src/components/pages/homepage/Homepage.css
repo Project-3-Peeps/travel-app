@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: ; */
+}
+
+.section1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 500px;
+    background-image: url(./images/travel-background.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.section1 h1 {
+    color: white;
+    font-weight: bold;
+    text-shadow: 5px 5px 5px black;
+}
+
+.searchForm {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.searchBtn {
+    background: black;
+    border: grey;
+}
+
+.searchBtn :hover {
+    background: black;
+}
+.section2 h2{
+    text-align: center;
+    padding-top: 2%;
+}
+
+.aboutCards {
+    display: flex;
+    flex-direction:row;
+    padding: 1%;
+    
+}
+
+.aboutCard {
+    padding: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    border-top: solid 2px grey;
+    border-bottom: solid 2px grey;
+    border-left: none;
+    border-right: none;
+    border-radius: 100%;
+}
+
+.section3 h2{
+    text-align: center;
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
+
+.featuredCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.featuredCard {
+    max-width: 300px;
+    padding: 1%;
+    margin: 0;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    
+}
+
+.cardImg {
+   
+}

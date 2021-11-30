@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./CreateItinerary.css";
 
-function ItineraryForm() {
+function CreateItinerary() {
   // Create state variables for the fields in the form
   // Setting their initial values to an empty string
   const [title, setTitle] = useState("");
@@ -146,4 +146,4 @@ function ItineraryForm() {
     </div>
   );
 }
-export default ItineraryForm;
+export default CreateItinerary;
