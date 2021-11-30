@@ -2,12 +2,8 @@ import React from "react";
 // this is the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./Homepage.css";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
-import CardGroup from 'react-bootstrap/CardGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 // these are the images 
@@ -16,7 +12,7 @@ import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
-import Background from "./images/travel-background.jpg";
+
 
 function Homepage() {
   return (
@@ -43,7 +39,7 @@ function Homepage() {
 </div>
 {/* this is the featured section  */}
 <div className="section3">
-  <h2>Featured</h2>
+  <h2>Featured Itineraries</h2>
   </div>
     <div className="featuredCards">
   <Card className="featuredCard">
