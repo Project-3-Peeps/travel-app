@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+
+
 // this is the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./Homepage.css";
@@ -12,33 +14,36 @@ import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
-import {searchCity} from "../../utils/API";
+import API from "../../utils/API";
 import jwt from "jsonwebtoken";
+
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoia3lsZSBib3ZlIiwiZW1haWwiOiJrYm92ZTk0QGdtYWlsLmNvbSIsIl9pZCI6IjYxYTZlNTQ1NjUwYTQ2Y2RiMmFmNDY1MiIsInBvaW50cyI6MH0sImlhdCI6MTYzODM5ODk1MywiZXhwIjoxNjM4NDA2MTUzfQ.y1fkpjyKcJ9p_uB9kwKT4y3nSnrywfZlloETdgNlYbQ"
 
 function Homepage() {
   //sets up a state variable for "city" 
-  const [city, searchCity] = useState('');
+  const [city, setCity] = useState('');
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (event) => {
     //get name and value of input triggering the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
+    // const { target } = e;
+    // const inputType = target.name;
+    // const inputValue = target.value;
 
-    if (inputType === 'city') {
-      searchCity(inputValue);
-    } 
+    if (event.target.name === 'city') {
+      setCity(event.target.value);
+    }
+    // console.log(city)
   }
 
   const handleFormSubmit = (e) => {
     //prevent default behavior of the form, which is to refresh the page
     e.preventDefault();
-
     alert(`You searched for ${city}`);
-  }
-
-  const searchForCity = (info) => {
-
+    API.searchCity(token, city)
+    .then(res => {
+      // res.json(res)
+      console.log(res)
+    })
   }
 
   return (
@@ -46,7 +51,7 @@ function Homepage() {
    {/* this is the search section  */}
     <div className="section1">
     <h1>What's Next on Your List?</h1>
-    <Form className="searchForm" onSubmit={searchForCity}>
+    <Form className="searchForm" onSubmit={API.searchCity(token,city)}>
           <FormControl
             type="search"
             placeholder="Search for a city..."
