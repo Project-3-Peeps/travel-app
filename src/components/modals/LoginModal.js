@@ -9,7 +9,6 @@ import "./Modals.css";
 
 const LoginModal = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
 
 
@@ -32,13 +31,8 @@ const LoginModal = () => {
       const response = await API.login(userFormData);
       console.log(response)
 
-      // if (!response.ok) {
-      //   throw new Error('something went wrong!');
-      // }
       const token = await response.data.token
       console.log(token)
-      // const { data.token, user } = await response.json();
-      // console.log(user);
       Auth.login(token);
     } catch (err) {
       console.error(err);
