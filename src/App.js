@@ -1,15 +1,16 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // importing the pages and modals
 import Homepage from "./components/pages/homepage/Homepage";
 import Footer from "./components/Footer";
 import CreateItinerary from "./components/pages/itinerary/CreateItinerary";
 import ProfilePage from "./components/pages/profile/ProfilePage";
-
+import LoginModal from "./components/modals/LoginModal";
+import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
 
 // Import API
-import API from "./utils/API";
+import API from "./components/utils/API";
 
 // CSS and bootstrap
 import "./NavFooter.css";
@@ -133,7 +134,12 @@ function App() {
           {" "}
           <ProfilePage />
         </Route>
-
+        <Route path="/login">
+          <LoginModal />
+        </Route>
+        <Route path="/signup">
+          <SignupModal />
+        </Route>
         <Route path="/">
           <Homepage />
         </Route>
