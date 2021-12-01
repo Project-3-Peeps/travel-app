@@ -45,6 +45,7 @@ function Homepage() {
    <> 
    {/* this is the search section  */}
     <div className="section1">
+    
     <h1>What's Next on Your List?</h1>
     <Form className="searchForm" onSubmit={searchForCity}>
           <FormControl

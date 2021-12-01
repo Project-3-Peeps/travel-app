@@ -8,7 +8,7 @@ import ProfilePage from "./components/pages/profile/ProfilePage";
 import LoginModal from "./components/modals/LoginModal";
 import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
-
+import ItineraryCard from "./components/pages/itinerary/ItineraryCard";
 // Import API
 import API from "./components/utils/API";
 
@@ -139,6 +139,9 @@ function App() {
         </Route>
         <Route path="/signup">
           <SignupModal />
+        </Route>
+        <Route path="/ItineraryCard">
+          <ItineraryCard />
         </Route>
         <Route path="/">
           <Homepage />

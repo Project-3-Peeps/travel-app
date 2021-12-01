@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import "./CreateItinerary.css";
@@ -11,20 +12,22 @@ function CreateItinerary() {
   // const [description, setDescription] = useState("");
   // const [days, setDays] = useState("");
   // const [activities, setActivities] = useState("");
-  // const [price, setPrice] = useState("");
+  // const [cost, setCost] = useState("");
 
-  const url = "http://localhost:5001/api/createItinerary";
+  const url = "http://localhost:3001/api/createItinerary";
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
-    title="",
-    description="",
-    price="",
-    days="1",
-      activities="",
-              what="",
-              where="",
-       cost=""
+    creator:"",
+    title:"",
+    description:"",
+    price:"",
+    days:"1",
+      activities:"",
+              what:"",
+              where:"",
+       cost:"",
+    rating:""
   })
 
   // Dealing with name field changes to update our state
@@ -32,33 +35,44 @@ function CreateItinerary() {
     const { name, value } = event.target;
 
     switch (name) {
+      case "creator":
+        setNewItinerary.creator(value)
+      break;
       case "title":
-        setTitle(value);
-        break;
+        setNewItinerary.title(value);
+      break;
       case "description":
-        setDescription(value);
-        break;
-      case "price":
-        setPrice(value);
-        break;
-      case "days":
-        setDays(value);
-        break;
-      case "activities":
-        setActivities(value);
-        break;
-      case "what":
-        setActivities(value);
-        break;
-      case "where":
-        setPrice(value);
-        break;
-      case "what":
-        setPrice(value);
-        break;
-
+        setNewItinerary.description(value);
+      break;
+     case "rating":
+      setNewItinerary.rating(value);
+     break;
+    //  case "days": 
+    //  for (let element of days ) {
+    //     switch(element) {
+    //       case "day_number":
+    //       setDa
+    //       break;
+    //       case "activities":
+    //       for (let element of activities) {
+    //         switch(element) {
+    //           case "where":
+    //           setWhere(value);
+    //           break;
+    //           case "what":
+    //           setWhat(value);
+    //           break;
+    //           case "cost":
+    //           setCost(value);
+    //           break;
+    //         }
+    //       }
+    //     }
+    //  }
+    //  break;
       default:
         break;
+
     }
   };
   // Add another activity to the same day
@@ -71,24 +85,24 @@ function CreateItinerary() {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
     // Post request
-    axios
-      .post(url, {
-        title: data.title,
-        description: data.description,
-        price: data.price,
-        days: data.days,
-        activities: data.activities,
-        what: data.what,
-        where: data.where,
-        cost: data.cost,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
+    // axios
+    //   .post(url, {
+    //     title: data.title,
+    //     description: data.description,
+    //     price: data.price,
+    //     days: data.days,
+    //     activities: data.activities,
+    //     what: data.what,
+    //     where: data.where,
+    //     cost: data.cost,
+    //   })
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
   };
 
   // On submit, alert the user their itinerary title, clear the inputs
-  alert(`Thanks for sharing ${title}!`);
+  alert(`Thanks for sharing!`);
   // setTitle("");
   // setDescription("");
   // setDays("");
@@ -100,7 +114,7 @@ function CreateItinerary() {
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
       {/* Intinerary Preview Info */}
-      <Form onSubmit={handleFormSubmit}>
+      <Form>
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
@@ -141,7 +155,7 @@ function CreateItinerary() {
         Day Form Inputs
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
-            <Accordion.Header id="days" name="days" value={days}>
+            <Accordion.Header id="days" name="days" value={newItinerary.days}>
               Day 1
             </Accordion.Header>
             <Accordion.Body>
@@ -158,7 +172,7 @@ function CreateItinerary() {
               </Form.Group>
 
               {/* Add Activity Start */}
-              <Form.Group id="activities" className="mb-3" value={activities}>
+              <Form.Group id="activities" className="mb-3" value={newItinerary.activities}>
                 <Form.Label>Activities</Form.Label>
                 <br />
                 <Form.Label>Where</Form.Label>
@@ -229,7 +243,7 @@ function CreateItinerary() {
           <Button
             className="btn-submit rounded-pill m-2"
             size="md"
-            onClick={handleFormSubmit}
+            onSubmit={handleFormSubmit}
           >
             Save Itinerary
           </Button>

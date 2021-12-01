@@ -28,8 +28,9 @@ function NavBar() {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link><Link to="/ProfilePage">Profile</Link></Nav.Link>
-                                <Nav.Link><Link to="/CreateItinerary">Create an Itinerary</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/ProfilePage">Profile</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/CreateItinerary">Create an Itinerary</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/ItineraryCard">Itinerary Card</Link></Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>

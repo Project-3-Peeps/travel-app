@@ -8,8 +8,9 @@ function Footer() {
     // <!--Contact me section-->
          <div>
               <div className="footer">
-                  <small>To learn more about our company, visit our GitHub </small>
-             <SocialIcon className="icon"url="https://github.com/Triptinerary" rel="noreferrer"/>
+                <div className>To learn more about our company, visit our GitHub<SocialIcon className="icon"url="https://github.com/Triptinerary" rel="noreferrer"/></div> 
+                
+                
             </div>
         </div>
     
