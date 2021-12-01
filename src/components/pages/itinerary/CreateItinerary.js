@@ -162,7 +162,7 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                onClick={addActivity}
+                // onClick={addActivity}
               >
                 + Add Activity
               </Button>
@@ -182,7 +182,7 @@ function CreateItinerary() {
             className="btn-add rounded-pill m-2"
             variant="warning"
             size="md"
-            onClick={addDay}
+            // onClick={addDay}
           >
             + Add Day
           </Button>
