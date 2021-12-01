@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
 // Import CSS
 import "./Modals.css";
 
 const SignupModal = (props) => {
+  const [showAlert, setShowAlert] = useState(false);
   return (
     <Form onSubmit={props.submit} className="SignupModal">
       {/* show alert if server response is bad */}

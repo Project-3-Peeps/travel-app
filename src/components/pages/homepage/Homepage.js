@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // this is the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./Homepage.css";
@@ -12,19 +12,50 @@ import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
-
+import {searchCity} from "../../utils/API";
+import jwt from "jsonwebtoken";
 
 function Homepage() {
+  //sets up a state variable for "city" 
+  const [city, searchCity] = useState('');
+
+  const handleInputChange = (e) => {
+    //get name and value of input triggering the change
+    const { target } = e;
+    const inputType = target.name;
+    const inputValue = target.value;
+
+    if (inputType === 'city') {
+      searchCity(inputValue);
+    } 
+  }
+
+  const handleFormSubmit = (e) => {
+    //prevent default behavior of the form, which is to refresh the page
+    e.preventDefault();
+
+    alert(`You searched for ${city}`);
+  }
+
+  const searchForCity = (info) => {
+
+  }
+
   return (
    <> 
    {/* this is the search section  */}
     <div className="section1">
     <h1>What's Next on Your List?</h1>
-    <Form className="searchForm">
+    <Form className="searchForm" onSubmit={searchForCity}>
           <FormControl
             type="search"
-            placeholder="Search for a country..."/>
-          <Button className="searchBtn">Search</Button>
+            placeholder="Search for a city..."
+            value={city}
+            name="city"
+            onChange={handleInputChange}
+            />
+            
+          <Button type="submit" onClick={handleFormSubmit} className="searchBtn">Search</Button>
         </Form>
     
   </div>
