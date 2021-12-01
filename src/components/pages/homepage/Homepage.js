@@ -13,6 +13,7 @@ import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
 import {searchCity} from "../../utils/API";
+import jwt from "jsonwebtoken";
 
 function Homepage() {
   //sets up a state variable for "city" 
