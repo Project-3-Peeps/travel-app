@@ -32,10 +32,12 @@
 .searchBtn {
     background: black;
     border: grey;
+    opacity: 90%;
 }
 
 .searchBtn :hover {
     background: black;
+    
 }
 .section2 h2{
     text-align: center;
