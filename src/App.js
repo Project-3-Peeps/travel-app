@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // importing the pages and modals
 import Homepage from "./components/pages/homepage/Homepage";
@@ -9,7 +9,7 @@ import ProfilePage from "./components/pages/profile/ProfilePage";
 import NavBar from "./components/NavBar";
 
 // Import API
-import API from "./utils/API";
+import API from "./components/utils/API";
 
 // CSS and bootstrap
 import "./NavFooter.css";
