@@ -2,7 +2,7 @@ import axios from "axios";
 //local
 const URL_PREFIX = "http://localhost:3001";
 //delploy
-// const URL_PREFIX = "https://reactauthdemo-back.herokuapp.com"
+// const URL_PREFIX = "https://triptinerary-backend.herokuapp.com"
 
 const API = {
   // TODO:
@@ -31,12 +31,12 @@ const API = {
   },
   // TODO:
   getAllItineraries: (token) => {
-    return axios.get(`${URL_PREFIX}/api/users/itinerary`, 
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      }
-    })
+    return axios.get(`${URL_PREFIX}/api/users/itinerary`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      })
   },
   // user _id must go inside the token
   savedItinerary: (token, itineraryInfo) => {
@@ -47,7 +47,7 @@ const API = {
     });
   },
   // user _id must go inside the token
-  createItinerary: (token, itineraryData ) => {
+  createItinerary: (token, itineraryData) => {
     return axios.post(`${URL_PREFIX}/api/users/createItinerary`, itineraryData, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,7 +55,7 @@ const API = {
     });
   },
   // user _id must go inside the token, and itinerary _id inside the body
-  purchaseItinerary: (token, itinerary_id ) => {
+  purchaseItinerary: (token, itinerary_id) => {
     return axios.put(
       `${URL_PREFIX}/api/users/purchaseItinerary`,
       itinerary_id,
