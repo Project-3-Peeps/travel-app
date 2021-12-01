@@ -3,75 +3,38 @@ import { Form, Button, Accordion } from "react-bootstrap";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
-  // Create state variables for the fields in the form
-  // Setting their initial values to an empty string
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [days, setDays] = useState("");
-  const [activities, setActivities] = useState("");
-  const [price, setPrice] = useState("");
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // const [newItinerary, setNewItinerary] = useState({
-  //   title="",
-  //   description="",
-  //   price="",
-  //   days="1",
-  // })
+  const [newItinerary, setNewItinerary] = useState({
+    title:"",
+    description:"",
+    price:"",
+    days:[],
+  })
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    setNewItinerary({
+      ...newItinerary,
+      [event.target.name]: event.target.value
+    })
 
-    //   setNewItinerary({
-    //     ...newItinerary,
-    //     [name]:value
-    // })
-
-    switch (name) {
-      case "title":
-        setTitle(value);
-        break;
-      case "description":
-        setDescription(value);
-        break;
-      case "days":
-        setDays(value);
-        break;
-      case "activities":
-        setActivities(value);
-        break;
-      case "price":
-        setPrice(value);
-        break;
-
-      default:
-        break;
-    }
+    
   };
 
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-
+    console.log(newItinerary)
     // On submit, alert the user their itinerary title, clear the inputs
-    alert(`Thanks for sharing ${title}!`);
-    setTitle("");
-    setDescription("");
-    setDays("");
-    setActivities("");
-    setPrice("");
+    // alert(`Thanks for sharing ${title}!`);
+    // setTitle("");
+    // setDescription("");
+    // setDays("");
+    // setActivities("");
+    // setPrice("");
   };
-
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  // const [day,setDay] = useState(1)
-
-  // <div>
-  //   users.map((itinerary) => (
-
-  //   ))
-  // </div>
 
   return (
     <div className="container">
