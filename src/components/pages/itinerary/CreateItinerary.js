@@ -1,11 +1,12 @@
+import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import "./CreateItinerary.css";
 
+import { CreateItinerary } from "../../utils/API";
+
 function CreateItinerary() {
-
-
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     title: "",
@@ -15,29 +16,31 @@ function CreateItinerary() {
       location: "",
       where: "",
       what: "",
-      cost: ""
+      cost: "",
     },
-    city: ""
-
-  })
+    city: "",
+  });
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
-
-    const name = event.target.name
-    if (event.target.name == "what" || event.target.name == "location" || event.target.name == "where" || event.target.name == "cost") {
-      const auxNewItinerary = {...newItinerary}
-      auxNewItinerary.days[name] = event.target.value
-      setNewItinerary(auxNewItinerary)
-    } else{
+    const name = event.target.name;
+    if (
+      event.target.name == "what" ||
+      event.target.name == "location" ||
+      event.target.name == "where" ||
+      event.target.name == "cost"
+    ) {
+      const auxNewItinerary = { ...newItinerary };
+      auxNewItinerary.days[name] = event.target.value;
+      setNewItinerary(auxNewItinerary);
+    } else {
       setNewItinerary({
         ...newItinerary,
-        [event.target.name]: event.target.value
-      })
+        [event.target.name]: event.target.value,
+      });
     }
-    console.log(newItinerary)
-  }
-
+    console.log(newItinerary);
+  };
 
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
@@ -46,8 +49,8 @@ function CreateItinerary() {
 
     // send the newItinerary to the backend using axios.
     // render the res from backend
+    createItinerary(token, newItinerary);
   };
-
 
   return (
     <div className="container">
@@ -57,9 +60,7 @@ function CreateItinerary() {
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
-
             value={newItinerary.title}
-
             name="title"
             onChange={handleInputChange}
             type="text"
@@ -69,9 +70,7 @@ function CreateItinerary() {
         <Form.Group className="mb-3">
           <Form.Label htmlFor="summary">Trip Description</Form.Label>
           <Form.Control
-
             value={newItinerary.description}
-
             name="description"
             onChange={handleInputChange}
             type="text"
@@ -86,9 +85,7 @@ function CreateItinerary() {
             <span className="input-group-text">Points</span>
           </div>
           <Form.Control
-
             value={newItinerary.price}
-
             name="price"
             onChange={handleInputChange}
             type="text"
@@ -124,7 +121,7 @@ function CreateItinerary() {
                 <Form.Label>Where</Form.Label>
                 <Form.Control
                   name="where"
-                  value={newItinerary['days']['where']}
+                  value={newItinerary["days"]["where"]}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -162,30 +159,15 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                onClick={addActivity}
+                // onClick={addActivity}
               >
-                + Add Activity
-              </Button>
-              <Button
-                className="btn-add rounded-pill m-2"
-                variant="danger"
-                size="md"
-              >
-                - Remove Activity
+                + Add Day
               </Button>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button
-            className="btn-add rounded-pill m-2"
-            variant="warning"
-            size="md"
-            onClick={addDay}
-          >
-            + Add Day
-          </Button>
           <Button
             className="btn-submit rounded-pill m-2"
             size="md"
