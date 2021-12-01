@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button, Accordion } from "react-bootstrap";
+import API from "../../utils/API";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
+
 
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
@@ -16,10 +18,12 @@ function CreateItinerary() {
       cost: ""
     },
     city: ""
+
   })
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
+
     const name = event.target.name
     if (event.target.name == "what" || event.target.name == "location" || event.target.name == "where" || event.target.name == "cost") {
       const auxNewItinerary = {...newItinerary}
@@ -34,23 +38,28 @@ function CreateItinerary() {
     console.log(newItinerary)
   }
 
+
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+
     // send the newItinerary to the backend using axios.
     // render the res from backend
   };
+
 
   return (
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
       {/* Intinerary Preview Info */}
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
+
             value={newItinerary.title}
+
             name="title"
             onChange={handleInputChange}
             type="text"
@@ -60,7 +69,9 @@ function CreateItinerary() {
         <Form.Group className="mb-3">
           <Form.Label htmlFor="summary">Trip Description</Form.Label>
           <Form.Control
+
             value={newItinerary.description}
+
             name="description"
             onChange={handleInputChange}
             type="text"
@@ -75,7 +86,9 @@ function CreateItinerary() {
             <span className="input-group-text">Points</span>
           </div>
           <Form.Control
+
             value={newItinerary.price}
+
             name="price"
             onChange={handleInputChange}
             type="text"
@@ -83,9 +96,7 @@ function CreateItinerary() {
             rows={3}
           />
         </Form.Group>
-
         <hr />
-
         Day Form Inputs
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
@@ -105,6 +116,7 @@ function CreateItinerary() {
                   rows={1}
                 />
               </Form.Group>
+
               {/* Add Activity Start */}
               <Form.Group id="activities" className="mb-3">
                 <Form.Label>Activities</Form.Label>
@@ -150,6 +162,7 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
+                onClick={addActivity}
               >
                 + Add Activity
               </Button>
@@ -169,6 +182,7 @@ function CreateItinerary() {
             className="btn-add rounded-pill m-2"
             variant="warning"
             size="md"
+            onClick={addDay}
           >
             + Add Day
           </Button>
