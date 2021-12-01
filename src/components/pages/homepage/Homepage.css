@@ -32,7 +32,7 @@
 .searchBtn {
     background: black;
     border: grey;
-    opacity: 90%;
+    opacity: 0.8;
 }
 
 .searchBtn :hover {

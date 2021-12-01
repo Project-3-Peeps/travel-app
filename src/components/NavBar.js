@@ -19,6 +19,7 @@ function NavBar() {
                 <Navbar bg="light" expand={false} >
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
+                    className="navPopOut"
                         id="offcanvasNavbar"
                         aria-labelledby="offcanvasNavbarLabel"
                         placement="start">
