@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // this is the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./Homepage.css";
@@ -15,6 +15,27 @@ import Venice from "./images/venice.jpeg";
 
 
 function Homepage() {
+  //sets up a state variable for "city" 
+  const [city, searchCity] = useState('');
+
+  const handleInputChange = (e) => {
+    //get name and value of input triggering the change
+    const { target } = e;
+    const inputType = target.name;
+    const inputValue = target.value;
+
+    if (inputType === 'city') {
+      searchCity(inputValue);
+    } 
+  }
+
+  const handleFormSubmit = (e) => {
+    //prevent default behavior of the form, which is to refresh the page
+    e.preventDefault();
+
+    alert(`You searched for ${city}`);
+  }
+
   return (
    <> 
    {/* this is the search section  */}
@@ -23,8 +44,13 @@ function Homepage() {
     <Form className="searchForm">
           <FormControl
             type="search"
-            placeholder="Search for a country..."/>
-          <Button className="searchBtn">Search</Button>
+            placeholder="Search for a city..."
+            value={city}
+            name="city"
+            onChange={handleInputChange}
+            />
+            
+          <Button type="submit" onClick={handleFormSubmit} className="searchBtn">Search</Button>
         </Form>
     
   </div>
