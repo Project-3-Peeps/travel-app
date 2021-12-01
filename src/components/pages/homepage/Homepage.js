@@ -12,7 +12,7 @@ import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
-
+import {searchCity} from "../../utils/API";
 
 function Homepage() {
   //sets up a state variable for "city" 
@@ -36,12 +36,16 @@ function Homepage() {
     alert(`You searched for ${city}`);
   }
 
+  const searchForCity = (info) => {
+
+  }
+
   return (
    <> 
    {/* this is the search section  */}
     <div className="section1">
     <h1>What's Next on Your List?</h1>
-    <Form className="searchForm">
+    <Form className="searchForm" onSubmit={searchForCity}>
           <FormControl
             type="search"
             placeholder="Search for a city..."
