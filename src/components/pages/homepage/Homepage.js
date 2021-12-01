@@ -17,22 +17,24 @@ import jwt from "jsonwebtoken";
 
 function Homepage() {
   //sets up a state variable for "city" 
-  const [city, searchCity] = useState('');
+  const [city, searchCity] = useState({city:''});
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (event) => {
     //get name and value of input triggering the change
-    const { target } = e;
-    const inputType = target.name;
-    const inputValue = target.value;
+    // const { target } = e;
+    // const inputType = target.name;
+    // const inputValue = target.value;
+// const city = event.target.name
 
-    if (inputType === 'city') {
-      searchCity(inputValue);
+    if (event.target.name === 'city') {
+      searchCity(event.target.value);
     } 
+    console.log(city)
   }
-
-  const handleFormSubmit = (e) => {
+  // Once the form has been submitted, this function will post to the backend
+  const handleFormSubmit = (event) => {
     //prevent default behavior of the form, which is to refresh the page
-    e.preventDefault();
+    event.preventDefault();
 
     alert(`You searched for ${city}`);
   }

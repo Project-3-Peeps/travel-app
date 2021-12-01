@@ -5,110 +5,48 @@ import API from "../../utils/API";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
-  // Create state variables for the fields in the form
-  // Setting their initial values to an empty string
 
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [days, setDays] = useState("");
-  // const [activities, setActivities] = useState("");
-  // const [cost, setCost] = useState("");
-
-  const url = "http://localhost:3001/api/createItinerary";
-
-  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
-    creator:"",
-    title:"",
-    description:"",
-    price:"",
-    days:"1",
-      activities:"",
-              what:"",
-              where:"",
-       cost:"",
-    rating:""
+    title: "",
+    description: "",
+    price: "",
+    days: {
+      location: "",
+      where: "",
+      what: "",
+      cost: ""
+    },
+    city: ""
+
   })
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
 
-    switch (name) {
-      case "creator":
-        setNewItinerary.creator(value)
-      break;
-      case "title":
-        setNewItinerary.title(value);
-      break;
-      case "description":
-        setNewItinerary.description(value);
-      break;
-     case "rating":
-      setNewItinerary.rating(value);
-     break;
-    //  case "days": 
-    //  for (let element of days ) {
-    //     switch(element) {
-    //       case "day_number":
-    //       setDa
-    //       break;
-    //       case "activities":
-    //       for (let element of activities) {
-    //         switch(element) {
-    //           case "where":
-    //           setWhere(value);
-    //           break;
-    //           case "what":
-    //           setWhat(value);
-    //           break;
-    //           case "cost":
-    //           setCost(value);
-    //           break;
-    //         }
-    //       }
-    //     }
-    //  }
-    //  break;
-      default:
-        break;
-
+    const name = event.target.name
+    if (event.target.name === "what" || event.target.name === "location" || event.target.name === "where" || event.target.name === "cost") {
+      const auxNewItinerary = {...newItinerary}
+      auxNewItinerary.days[name] = event.target.value
+      setNewItinerary(auxNewItinerary)
+    } else{
+      setNewItinerary({
+        ...newItinerary,
+        [event.target.name]: event.target.value
+      })
     }
-  };
-  // Add another activity to the same day
-  function addActivity({}) {}
-  // Add day to the intinerary
-  function addDay({}) {}
+    console.log(newItinerary)
+  }
+
 
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    // Post request
-    // axios
-    //   .post(url, {
-    //     title: data.title,
-    //     description: data.description,
-    //     price: data.price,
-    //     days: data.days,
-    //     activities: data.activities,
-    //     what: data.what,
-    //     where: data.where,
-    //     cost: data.cost,
-    //   })
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
+
+    // send the newItinerary to the backend using axios.
+    // render the res from backend
   };
 
-  // On submit, alert the user their itinerary title, clear the inputs
-  alert(`Thanks for sharing!`);
-  // setTitle("");
-  // setDescription("");
-  // setDays("");
-  // setActivities("");
-  // setPrice("");
-  setNewItinerary("");
 
   return (
     <div className="container">
@@ -118,7 +56,9 @@ function CreateItinerary() {
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
-            // value={title}
+
+            value={newItinerary.title}
+
             name="title"
             onChange={handleInputChange}
             type="text"
@@ -128,7 +68,9 @@ function CreateItinerary() {
         <Form.Group className="mb-3">
           <Form.Label htmlFor="summary">Trip Description</Form.Label>
           <Form.Control
-            // value={description}
+
+            value={newItinerary.description}
+
             name="description"
             onChange={handleInputChange}
             type="text"
@@ -143,7 +85,9 @@ function CreateItinerary() {
             <span className="input-group-text">Points</span>
           </div>
           <Form.Control
-            // value={price}
+
+            value={newItinerary.price}
+
             name="price"
             onChange={handleInputChange}
             type="text"
@@ -162,8 +106,9 @@ function CreateItinerary() {
               <Form.Group id="location" className="mb-3">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
-                  name="city"
-                  // value={city}
+                  name="location"
+                  value={newItinerary.days.location}
+                  onChange={handleInputChange}
                   type="text"
                   as="textarea"
                   placeholder="Country or City"
@@ -172,13 +117,13 @@ function CreateItinerary() {
               </Form.Group>
 
               {/* Add Activity Start */}
-              <Form.Group id="activities" className="mb-3" value={newItinerary.activities}>
+              <Form.Group id="activities" className="mb-3">
                 <Form.Label>Activities</Form.Label>
                 <br />
                 <Form.Label>Where</Form.Label>
                 <Form.Control
                   name="where"
-                  // value={where}
+                  value={newItinerary['days']['where']}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -189,7 +134,7 @@ function CreateItinerary() {
                 <Form.Label>What</Form.Label>
                 <Form.Control
                   name="what"
-                  // value={what}
+                  value={newItinerary.days.what}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -204,7 +149,7 @@ function CreateItinerary() {
                 </div>
                 <Form.Control
                   name="cost"
-                  // value={cost}
+                  value={newItinerary.days.cost}
                   onChange={handleInputChange}
                   type="text"
                   placeholder="100.00"
@@ -216,7 +161,7 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                onClick={addActivity}
+                // onClick={addActivity}
               >
                 + Add Activity
               </Button>
@@ -236,7 +181,7 @@ function CreateItinerary() {
             className="btn-add rounded-pill m-2"
             variant="warning"
             size="md"
-            onClick={addDay}
+            // onClick={addDay}
           >
             + Add Day
           </Button>
