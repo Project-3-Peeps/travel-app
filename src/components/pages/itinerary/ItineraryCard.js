@@ -1,13 +1,13 @@
 // import React, { useState } from "react";
 // import "bootstrap/dist/css/bootstrap.min.css";
-// import "./ItineraryCard.css";
+// import "./CreateItinerary.css";
 // import Card from "react-bootstrap";
 
 // function ItineraryCard(props) {
 //   return (
 //     <>
 //       <Card className="featuredCard">
-//         <Card.Img className="cardImg" src={France} />
+//         <Card.Img className="cardImg"/>
 //         <Card.Body>
 //         {/* Itinerary Preview Section */}
 
