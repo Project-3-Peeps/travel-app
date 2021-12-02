@@ -69,7 +69,7 @@ const API = {
     );
   },
   searchCity: (token, city) => {
-    return axios.get(
+    return axios.post(
       `${URL_PREFIX}/api/users/searchCity`,
       city,
       {

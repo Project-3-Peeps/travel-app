@@ -1,24 +1,24 @@
 import React, {useState} from "react";
-
-
 // this is the css 
+import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
-import  "./Homepage.css";
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-// these are the images 
+import "./Homepage.css";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
+// these are the images
 import France from "./images/france.jpeg";
 import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
-import auth from "../../utils/auth"
+import token from "../../utils/auth"
+// import { searchCity } from "../../utils/API";
 import jwt from "jsonwebtoken";
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoia3lsZSBib3ZlIiwiZW1haWwiOiJrYm92ZTk0QGdtYWlsLmNvbSIsIl9pZCI6IjYxYTZlNTQ1NjUwYTQ2Y2RiMmFmNDY1MiIsInBvaW50cyI6MH0sImlhdCI6MTYzODM5ODk1MywiZXhwIjoxNjM4NDA2MTUzfQ.y1fkpjyKcJ9p_uB9kwKT4y3nSnrywfZlloETdgNlYbQ"
+console.log(token)
 
 function Homepage() {
   //sets up a state variable for "city" 
@@ -26,24 +26,23 @@ function Homepage() {
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
-    // const { target } = e;
-    // const inputType = target.name;
-    // const inputValue = target.value;
-
-    if (event.target.name === 'city') {
       setCity(event.target.value);
-    }
     // console.log(city)
   }
-
-  const handleFormSubmit = (e) => {
+  // Once the form has been submitted, this function will post to the backend
+  const handleFormSubmit = (event) => {
     //prevent default behavior of the form, which is to refresh the page
-    e.preventDefault();
+    event.preventDefault();
     alert(`You searched for ${city}`);
-    API.searchCity(token, city)
+    const cityQuery = {
+      city: city.toString()}
+    console.log(cityQuery)
+    API.searchCity(token, cityQuery)
     .then(res => {
       // res.json(res)
       console.log(res)
+      const title = res.data.title
+      const description = res.data.description
     })
   }
 
@@ -51,8 +50,9 @@ function Homepage() {
    <> 
    {/* this is the search section  */}
     <div className="section1">
+    
     <h1>What's Next on Your List?</h1>
-    <Form className="searchForm" onSubmit={API.searchCity(token,city)}>
+    <Form className="searchForm" onSubmit={() => API.searchCity(token,city)}>
           <FormControl
             type="search"
             placeholder="Search for a city..."
@@ -69,9 +69,9 @@ function Homepage() {
   <div className="section2">
   <h2>About</h2>
     <div className="aboutCards">
-    <Card className="aboutCard">Get curated itineraries from travelers just like you!</Card>
-    <Card className="aboutCard">Share your personal itineraries with the world!</Card>
-    <Card className="aboutCard">Buy an itinerary and rate your experience!</Card>
+    <Card className="aboutCard"><h3>Get curated itineraries from travelers just like you!</h3></Card>
+    <Card className="aboutCard"><h3>Share your personal itineraries with the world!</h3></Card>
+    <Card className="aboutCard"><h3>You can buy an itinerary and rate your experience!</h3></Card>
   </div>
 </div>
 {/* this is the featured section  */}
@@ -140,8 +140,7 @@ function Homepage() {
     </Card.Footer>
   </Card>
   </div>
-
-</>
+    </>
   );
 }
 

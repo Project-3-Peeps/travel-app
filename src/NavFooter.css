@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+ 
 }
 
 .titlePlacement {
@@ -8,6 +9,9 @@
 
 }
 
+.backgroundColor {
+  background: #e0e6e0;;
+}
 .linkPlacement {
 
 display: flex;
@@ -15,7 +19,7 @@ justify-content: flex-end;
 }
 .appTitle {
   text-decoration: none;
-  color: black;
+  color: #2e2313;
   font-size: 300%; 
   padding-left: 20px;
 }
@@ -26,16 +30,44 @@ justify-content: flex-end;
   font-size: 100%;
 }
 
+.navPopOut {
+  background: #e0e6e0;
+  opacity: 0.9;
+}
+
+.popOutLinks {
+  color: #2e2313;
+  text-decoration: none;
+}
 .footer {
-display: flex;
+  display: flex;
 justify-content: center;
 align-items: center;
 padding: 2%;
-color: rgb(87, 85, 85);
-background: rgb(211, 210, 210);
+color: #2e2313;
+background: #e0e6e0;
+ 
+}
+
+.footerSpacing {
+
+ 
 }
 
 .icon {
- font-size: 10px;
- margin-left: 2%;
+ 
+ margin-left: 10px;
+}
+
+@media screen and (max-width: 400px) {
+ 
+    .loginLinks {
+      padding-left: 20px;
+      text-decoration: none;
+      color: black;
+      font-size: 90%;
+    }
+    .footer{
+      align-items: center;
+    }
 }
