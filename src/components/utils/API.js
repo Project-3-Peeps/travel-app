@@ -1,4 +1,6 @@
 import axios from "axios";
+// import ProfilePage from "../pages/profile/ProfilePage";
+// import AuthService from "../utils/auth";
 //local
 const URL_PREFIX = "http://localhost:3001";
 //delploy
@@ -67,7 +69,7 @@ const API = {
     );
   },
   searchCity: (token, city) => {
-    return axios.get(
+    return axios.post(
       `${URL_PREFIX}/api/users/searchCity`,
       city,
       {

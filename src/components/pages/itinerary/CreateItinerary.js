@@ -4,6 +4,7 @@ import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
+// import auth from "../../utils/auth"
 
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -48,7 +49,7 @@ function CreateItinerary() {
 
     // send the newItinerary to the backend using axios.
     // render the res from backend
-    const token = auth.getToken();
+    const token = auth.getToken()
     API.createItinerary(token, newItinerary);
   };
 
@@ -168,15 +169,11 @@ function CreateItinerary() {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-<<<<<<< HEAD
-          <Button className="btn-submit rounded-pill m-2" size="md">
-=======
           <Button
             className="btn-submit rounded-pill m-2"
             size="md"
             onSubmit={handleFormSubmit}
           >
->>>>>>> dev
             Save Itinerary
           </Button>
         </Form.Group>

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-// this is the css
+import React, {useState} from "react";
+// this is the css 
+import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Homepage.css";
 import Form from "react-bootstrap/Form";
@@ -12,34 +13,38 @@ import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
+import API from "../../utils/API";
+import token from "../../utils/auth"
 // import { searchCity } from "../../utils/API";
 import jwt from "jsonwebtoken";
 
+console.log(token)
+
 function Homepage() {
-  //sets up a state variable for "city"
-  const [city, searchCity] = useState("");
+  //sets up a state variable for "city" 
+  const [city, setCity] = useState('');
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
-    // const { target } = e;
-    // const inputType = target.name;
-    // const inputValue = target.value;
-// const city = event.target.name
-
-    if (event.target.name === 'city') {
-      searchCity(event.target.value);
-    } 
-    console.log(city)
+      setCity(event.target.value);
+    // console.log(city)
   }
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
-
     alert(`You searched for ${city}`);
-  };
-
-  const searchForCity = (info) => {};
+    const cityQuery = {
+      city: city.toString()}
+    console.log(cityQuery)
+    API.searchCity(token, cityQuery)
+    .then(res => {
+      // res.json(res)
+      console.log(res)
+      const title = res.data.title
+      const description = res.data.description
+    })
+  }
 
   return (
    <> 
@@ -47,7 +52,7 @@ function Homepage() {
     <div className="section1">
     
     <h1>What's Next on Your List?</h1>
-    <Form className="searchForm" onSubmit={searchForCity}>
+    <Form className="searchForm" onSubmit={() => API.searchCity(token,city)}>
           <FormControl
             type="search"
             placeholder="Search for a city..."
