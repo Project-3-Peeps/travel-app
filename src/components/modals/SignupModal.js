@@ -1,13 +1,53 @@
 import React, {useState} from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
+import API from '../utils/API';
+import Auth from '../utils/auth';
+
 // Import CSS
 import "./Modals.css";
 
-const SignupModal = (props) => {
+const SignupModal = () => {
+  // set initial form state
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  // set state for alert
   const [showAlert, setShowAlert] = useState(false);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUserFormData({ ...userFormData, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // check if form has everything (as per react-bootstrap docs)
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    try {
+      const response = await API.signup(userFormData);
+
+      const { token, data } = await response
+      console.log(data);
+      Auth.login(token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+    }
+
+    setUserFormData({
+      username: '',
+      email: '',
+      password: '',
+    });
+  };
+
   return (
-    <Form onSubmit={props.submit} className="SignupModal">
+    <Form onSubmit={handleFormSubmit} className="SignupModal">
       {/* show alert if server response is bad */}
       <Alert
         dismissible
@@ -23,8 +63,8 @@ const SignupModal = (props) => {
           type="text"
           placeholder="Your username"
           name="username"
-          onChange={props.change}
-          value={props.signupState.username}
+          onChange={handleInputChange}
+          value={userFormData.username}
           required
         />
         <Form.Control.Feedback type="invalid">
@@ -37,8 +77,8 @@ const SignupModal = (props) => {
           type="email"
           placeholder="Your email address"
           name="email"
-          onChange={props.change}
-          value={props.signupState.email}
+          onChange={handleInputChange}
+          value={userFormData.email}
           required
         />
         <Form.Control.Feedback type="invalid">
@@ -51,8 +91,8 @@ const SignupModal = (props) => {
           type="password"
           placeholder="password"
           name="password"
-          onChange={props.change}
-          value={props.signupState.password}
+          onChange={handleInputChange}
+          value={userFormData.password}
           required
         />
         <Form.Control.Feedback type="invalid">
@@ -62,9 +102,9 @@ const SignupModal = (props) => {
       <Button
         disabled={
           !(
-            props.signupState.username &&
-            props.signupState.email &&
-            props.signupState.password
+            userFormData.username &&
+            userFormData.email &&
+            userFormData.password
           )
         }
         type="submit"

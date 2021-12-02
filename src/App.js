@@ -23,11 +23,6 @@ function App() {
     id: 0,
   });
   const [token, setToken] = useState("");
-  const [signupModalState, setSignupModalState] = useState({
-    email: "",
-    username: "",
-    password: "",
-  });
 
   useEffect(() => {
     const myToken = auth.getToken();
@@ -50,40 +45,6 @@ function App() {
         });
     }
   }, []);
-
-
-  const handleSignupChange = (event) => {
-    if (event.target.name === "email") {
-      setSignupModalState({
-        ...signupModalState,
-        email: event.target.value,
-      });
-    } else {
-      setSignupModalState({
-        ...signupModalState,
-        password: event.target.value,
-      });
-    }
-  };
-
-  const handleSignupSubmit = (e) => {
-    e.preventDefault();
-    API.signup(signupModalState).then((res) => {
-      API.login(signupModalState)
-        .then((res) => {
-          console.log(res.data);
-          setUserState({
-            email: res.data.user.email,
-            id: res.data.user.id,
-          });
-          setToken(res.data.token);
-          localStorage.setItem("token", res.data.token);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    });
-  };
 
   const logMeOut = () => {
     setUserState({ email: "", id: 0 });
