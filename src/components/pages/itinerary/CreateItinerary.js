@@ -11,27 +11,31 @@ function CreateItinerary() {
     title: "",
     description: "",
     price: "",
-    days: {
-      location: "",
-      where: "",
-      what: "",
-      cost: "",
-    },
+    days: [],
     city: "",
   });
+  // future development: create component for each day, inside newDay state
+  const [newDay, setNewDay] = useState({
+    location: "",
+    where: "",
+    what: "",
+    cost: ""
+  })
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
-    const name = event.target.name;
+    // const name = event.target.name;
     if (
-      event.target.name == "what" ||
-      event.target.name == "location" ||
-      event.target.name == "where" ||
-      event.target.name == "cost"
+      event.target.name == "what" || event.target.name == "location" || event.target.name == "where" || event.target.name == "cost"
     ) {
-      const auxNewItinerary = { ...newItinerary };
-      auxNewItinerary.days[name] = event.target.value;
-      setNewItinerary(auxNewItinerary);
+      setNewDay({
+        ...newDay,
+        [event.target.name]: event.target.value
+      })
+      setNewItinerary({
+        ...newItinerary,
+        days: [newDay]
+      })
     } else {
       setNewItinerary({
         ...newItinerary,
@@ -40,12 +44,11 @@ function CreateItinerary() {
     }
     console.log(newItinerary);
   };
-
+  
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
@@ -159,7 +162,7 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                // onClick={addActivity}
+              // onClick={addActivity}
               >
                 + Add Day
               </Button>
