@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import "./CreateItinerary.css";
-
-import { CreateItinerary } from "../../utils/API";
+import auth from "../../utils/auth"
 
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +48,8 @@ function CreateItinerary() {
 
     // send the newItinerary to the backend using axios.
     // render the res from backend
-    createItinerary(token, newItinerary);
+    const token = auth.getToken()
+    API.createItinerary(token, newItinerary);
   };
 
   return (

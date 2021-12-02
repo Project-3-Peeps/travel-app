@@ -15,6 +15,7 @@ import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
+import auth from "../../utils/auth"
 import jwt from "jsonwebtoken";
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJuYW1lIjoia3lsZSBib3ZlIiwiZW1haWwiOiJrYm92ZTk0QGdtYWlsLmNvbSIsIl9pZCI6IjYxYTZlNTQ1NjUwYTQ2Y2RiMmFmNDY1MiIsInBvaW50cyI6MH0sImlhdCI6MTYzODM5ODk1MywiZXhwIjoxNjM4NDA2MTUzfQ.y1fkpjyKcJ9p_uB9kwKT4y3nSnrywfZlloETdgNlYbQ"
