@@ -15,10 +15,11 @@ function NavBar() {
     return (
        
         <Container fluid>
-            <Row>
-                <Navbar bg="light" expand={false} >
+            <Row className="backgroundColor">
+                <Navbar  expand={false} >
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
+                    className="navPopOut"
                         id="offcanvasNavbar"
                         aria-labelledby="offcanvasNavbarLabel"
                         placement="start">
@@ -27,8 +28,9 @@ function NavBar() {
                         </Offcanvas.Header>
                         <Offcanvas.Body>
                             <Nav className="justify-content-end flex-grow-1 pe-3">
-                                <Nav.Link><Link to="/ProfilePage">Profile</Link></Nav.Link>
-                                <Nav.Link><Link to="/CreateItinerary">Create an Itinerary</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/ProfilePage">Profile</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/CreateItinerary">Create an Itinerary</Link></Nav.Link>
+                                <Nav.Link><Link  className="popOutLinks"to="/ItineraryCard">Itinerary Card</Link></Nav.Link>
                             </Nav>
                         </Offcanvas.Body>
                     </Navbar.Offcanvas>
