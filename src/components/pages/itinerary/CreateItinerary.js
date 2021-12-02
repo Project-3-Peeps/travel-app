@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
-import auth from "../utils/auth";
+import auth from "../../utils/auth";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
@@ -168,11 +168,7 @@ function CreateItinerary() {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button
-            className="btn-submit rounded-pill m-2"
-            size="md"
-            onClick={handleFormSubmit}
-          >
+          <Button className="btn-submit rounded-pill m-2" size="md">
             Save Itinerary
           </Button>
         </Form.Group>
