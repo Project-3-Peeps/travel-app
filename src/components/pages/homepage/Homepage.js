@@ -66,9 +66,9 @@ function Homepage() {
   <div className="section2">
   <h2>About</h2>
     <div className="aboutCards">
-    <Card className="aboutCard">Get curated itineraries from travelers just like you!</Card>
-    <Card className="aboutCard">Share your personal itineraries with the world!</Card>
-    <Card className="aboutCard">Buy an itinerary and rate your experience!</Card>
+    <Card className="aboutCard"><h3>Get curated itineraries from travelers just like you!</h3></Card>
+    <Card className="aboutCard"><h3>Share your personal itineraries with the world!</h3></Card>
+    <Card className="aboutCard"><h3>You can buy an itinerary and rate your experience!</h3></Card>
   </div>
 </div>
 {/* this is the featured section  */}

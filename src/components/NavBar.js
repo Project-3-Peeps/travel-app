@@ -15,8 +15,8 @@ function NavBar() {
     return (
        
         <Container fluid>
-            <Row>
-                <Navbar bg="light" expand={false} >
+            <Row className="backgroundColor">
+                <Navbar  expand={false} >
                     <Navbar.Toggle aria-controls="offcanvasNavbar" />
                     <Navbar.Offcanvas
                     className="navPopOut"
