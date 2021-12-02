@@ -17,7 +17,7 @@ import jwt from "jsonwebtoken";
 
 function Homepage() {
   //sets up a state variable for "city" 
-  const [city, searchCity] = useState({city:''});
+  const [city, searchCity] = useState('');
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change

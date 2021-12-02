@@ -41,7 +41,8 @@
 }
 
 .section2 {
-    background: #a7b17d;
+    background: rgb(185,147,92);
+background: radial-gradient(circle, rgba(185,147,92,1) 0%, rgba(112,68,26,1) 80%, rgba(46,35,19,1) 100%);
     border-top: solid 2px #2E2313;
     border-bottom: solid 2px #2E2313;
 }
@@ -69,7 +70,7 @@
     border-left: none;
     border-right: none;
     border-radius: 100%;
-    background: #a7b17d;
+    background:transparent;
     text-align:center;
 }
 
