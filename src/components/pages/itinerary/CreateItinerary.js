@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
-import auth from "../utils/auth";
+import auth from "../../utils/auth";
 import "./CreateItinerary.css";
 
 function CreateItinerary() {
@@ -56,7 +56,7 @@ function CreateItinerary() {
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
       {/* Intinerary Preview Info */}
-      <Form onSubmit={handleFormSubmit}>
+      <Form>
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
@@ -171,7 +171,7 @@ function CreateItinerary() {
           <Button
             className="btn-submit rounded-pill m-2"
             size="md"
-            onClick={handleFormSubmit}
+            onSubmit={handleFormSubmit}
           >
             Save Itinerary
           </Button>
