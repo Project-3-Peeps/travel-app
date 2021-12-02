@@ -8,15 +8,20 @@ import "./CreateItinerary.css";
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
+    creator: "Change this later",
     title: "",
     description: "",
     price: "",
     days: [],
-    city: "",
   });
   // future development: create component for each day, inside newDay state
   const [newDay, setNewDay] = useState({
-    location: "",
+    city: "",
+    activities: [],
+    // TODO: change day_number lenght 
+    day_number: 1
+  })
+  const [newActivities, setActivities] = useState({
     where: "",
     what: "",
     cost: ""
@@ -26,8 +31,22 @@ function CreateItinerary() {
   const handleInputChange = (event) => {
     // const name = event.target.name;
     if (
-      event.target.name == "what" || event.target.name == "location" || event.target.name == "where" || event.target.name == "cost"
+      event.target.name === "what" ||  event.target.name === "where" || event.target.name === "cost"
     ) {
+      setActivities({
+        ...newActivities,
+        [event.target.name]: event.target.value
+      })
+
+      setNewDay({
+        ...newDay,
+        activities: [newActivities]
+      })
+      setNewItinerary({
+        ...newItinerary,
+        days: [newDay]
+      })
+    } else if (event.target.name === "city") {
       setNewDay({
         ...newDay,
         [event.target.name]: event.target.value
@@ -36,30 +55,34 @@ function CreateItinerary() {
         ...newItinerary,
         days: [newDay]
       })
+
     } else {
       setNewItinerary({
         ...newItinerary,
         [event.target.name]: event.target.value,
       });
     }
-    console.log(newItinerary);
   };
   
   // Once the form has been submitted, this function will post to the backend
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
+    console.log("submit")
+    console.log(newItinerary)
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
-    API.createItinerary(token, newItinerary);
+    const response = await API.createItinerary(token, newItinerary);
+    console.log(response)
+    window.location.assign("/");
   };
 
   return (
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
       {/* Intinerary Preview Info */}
-      <Form>
+      <Form >
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
@@ -107,8 +130,8 @@ function CreateItinerary() {
               <Form.Group id="location" className="mb-3">
                 <Form.Label>Location</Form.Label>
                 <Form.Control
-                  name="location"
-                  value={newItinerary.days.location}
+                  name="city"
+                  value={newDay.city}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -124,7 +147,7 @@ function CreateItinerary() {
                 <Form.Label>Where</Form.Label>
                 <Form.Control
                   name="where"
-                  value={newItinerary["days"]["where"]}
+                  value={newActivities.where}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -135,7 +158,7 @@ function CreateItinerary() {
                 <Form.Label>What</Form.Label>
                 <Form.Control
                   name="what"
-                  value={newItinerary.days.what}
+                  value={newActivities.what}
                   onChange={handleInputChange}
                   type="text"
                   as="textarea"
@@ -150,7 +173,7 @@ function CreateItinerary() {
                 </div>
                 <Form.Control
                   name="cost"
-                  value={newItinerary.days.cost}
+                  value={newActivities.cost}
                   onChange={handleInputChange}
                   type="text"
                   placeholder="100.00"
@@ -171,7 +194,7 @@ function CreateItinerary() {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button className="btn-submit rounded-pill m-2" size="md">
+          <Button className="btn-submit rounded-pill m-2" size="md" onClick={handleFormSubmit}>
             Save Itinerary
           </Button>
         </Form.Group>

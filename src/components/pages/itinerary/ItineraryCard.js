@@ -1,23 +1,23 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreateItinerary.css";
-import Card from "react-bootstrap";
+import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 
 function ItineraryCard(props) {
   return (
     <>
-      {itinerary.map((itin) => {
-        <Card className="featuredCard" key={itinerary.id}>
+      {props.itinerary.map((itin) => {
+        <Card className="featuredCard" key={props.itinerary._id}>
           <Card.Img className="cardImg" />
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}
-            <Card.Title key={itin.id}>{itin.title}</Card.Title>
+            <Card.Title key={itin._id}>{itin.title}</Card.Title>
             {/* Description */}
-            <Card.Text key={itin.id}>{itin.description}</Card.Text>
+            <Card.Text key={itin._id}>{itin.description}</Card.Text>
             {/* Price */}
-            <Card.Text key={itin.id}>{itin.price}</Card.Text>
+            <Card.Text key={itin._id}>{itin.price}</Card.Text>
             {/* Preview End */}
             {/*  */}
             {itin.days.map((days) => {
@@ -31,16 +31,16 @@ function ItineraryCard(props) {
                 <li className="list-group-item">{days.city}</li>
 
                 {/* Activities*/}
-                {days.map((activities) => {
+                {days.activities.map((activity) => {
                   <li className="list-group-item">
-                    {(activities.where, activities.what, activities.cost)}
+                    {(activity.where, activity.what, activity.cost)}
                   </li>;
                 })}
               </ul>;
             })}
           </Card.Body>
           <Card.Footer>
-            <small key={itinerary.id}> Rating: {itinerary.ratings} </small>
+            <small key={props.itinerary._id}> Rating: {props.itinerary.ratings} </small>
           </Card.Footer>
         </Card>;
       })}
