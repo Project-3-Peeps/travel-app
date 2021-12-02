@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar";
 import ItineraryCard from "./components/pages/itinerary/ItineraryCard";
 // Import API
 import API from "./components/utils/API";
+import auth from "./components/utils/auth"
 
 // CSS and bootstrap
 import "./NavFooter.css";
@@ -23,10 +24,6 @@ function App() {
     id: 0,
   });
   const [token, setToken] = useState("");
-  const [loginModalState, setLoginModalState] = useState({
-    email: "",
-    password: "",
-  });
   const [signupModalState, setSignupModalState] = useState({
     email: "",
     username: "",
@@ -34,7 +31,7 @@ function App() {
   });
 
   useEffect(() => {
-    const myToken = localStorage.getItem("token");
+    const myToken = auth.getToken();
     console.log("use effected");
     console.log(myToken);
     if (myToken) {
@@ -55,19 +52,7 @@ function App() {
     }
   }, []);
 
-  const handleLoginChange = (event) => {
-    if (event.target.name === "email") {
-      setLoginModalState({
-        ...loginModalState,
-        email: event.target.value,
-      });
-    } else {
-      setLoginModalState({
-        ...loginModalState,
-        password: event.target.value,
-      });
-    }
-  };
+
   const handleSignupChange = (event) => {
     if (event.target.name === "email") {
       setSignupModalState({
@@ -82,22 +67,6 @@ function App() {
     }
   };
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
-    API.login(loginModalState)
-      .then((res) => {
-        console.log(res.data);
-        setUserState({
-          email: res.data.user.email,
-          id: res.data.user.id,
-        });
-        setToken(res.data.token);
-        localStorage.setItem("token", res.data.token);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
   const handleSignupSubmit = (e) => {
     e.preventDefault();
     API.signup(signupModalState).then((res) => {
@@ -120,7 +89,7 @@ function App() {
   const logMeOut = () => {
     setUserState({ email: "", id: 0 });
     setToken("");
-    localStorage.removeItem("token");
+    auth.logout()
   };
   return (
     <Router>

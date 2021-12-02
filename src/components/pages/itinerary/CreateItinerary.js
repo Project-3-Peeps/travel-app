@@ -170,6 +170,14 @@ function CreateItinerary() {
         <br />
         <Form.Group className="text-center">
           <Button
+            className="btn-add rounded-pill m-2"
+            variant="warning"
+            size="md"
+            // onClick={addDay}
+          >
+            + Add Day
+          </Button>
+          <Button
             className="btn-submit rounded-pill m-2"
             size="md"
             onSubmit={handleFormSubmit}
