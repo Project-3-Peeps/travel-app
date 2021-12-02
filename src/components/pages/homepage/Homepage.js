@@ -1,23 +1,23 @@
-import React, {useState} from "react";
-// this is the css 
+import React, { useState } from "react";
+// this is the css
 import "bootstrap/dist/css/bootstrap.min.css";
-import  "./Homepage.css";
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-// these are the images 
+import "./Homepage.css";
+import Form from "react-bootstrap/Form";
+import Card from "react-bootstrap/Card";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
+// these are the images
 import France from "./images/france.jpeg";
 import Seattle from "./images/seattle.jpeg";
 import Peru from "./images/peru.jpeg";
 import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
-import {searchCity} from "../../utils/API";
+// import { searchCity } from "../../utils/API";
 import jwt from "jsonwebtoken";
 
 function Homepage() {
-  //sets up a state variable for "city" 
-  const [city, searchCity] = useState('');
+  //sets up a state variable for "city"
+  const [city, searchCity] = useState("");
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -37,11 +37,9 @@ function Homepage() {
     event.preventDefault();
 
     alert(`You searched for ${city}`);
-  }
+  };
 
-  const searchForCity = (info) => {
-
-  }
+  const searchForCity = (info) => {};
 
   return (
    <> 
@@ -137,8 +135,7 @@ function Homepage() {
     </Card.Footer>
   </Card>
   </div>
-
-</>
+    </>
   );
 }
 
