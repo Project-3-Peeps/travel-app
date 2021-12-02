@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
+import auth from "../utils/auth";
 import "./CreateItinerary.css";
-
-import { CreateItinerary } from "../../utils/API";
 
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -49,7 +48,8 @@ function CreateItinerary() {
 
     // send the newItinerary to the backend using axios.
     // render the res from backend
-    createItinerary(token, newItinerary);
+    const token = auth.getToken();
+    API.createItinerary(token, newItinerary);
   };
 
   return (
@@ -168,14 +168,6 @@ function CreateItinerary() {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button
-            className="btn-add rounded-pill m-2"
-            variant="warning"
-            size="md"
-            // onClick={addDay}
-          >
-            + Add Day
-          </Button>
           <Button
             className="btn-submit rounded-pill m-2"
             size="md"
