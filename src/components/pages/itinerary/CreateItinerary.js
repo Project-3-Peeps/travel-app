@@ -169,11 +169,7 @@ function CreateItinerary() {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button
-            className="btn-submit rounded-pill m-2"
-            size="md"
-            onSubmit={handleFormSubmit}
-          >
+          <Button className="btn-submit rounded-pill m-2" size="md">
             Save Itinerary
           </Button>
         </Form.Group>
