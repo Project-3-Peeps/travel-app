@@ -63,7 +63,7 @@ function App() {
         </Route>
         <Route path="/ProfilePage">
           {" "}
-          <ProfilePage />
+          <ProfilePage /                                   >
         </Route>
         <Route path="/login">
           <LoginModal />

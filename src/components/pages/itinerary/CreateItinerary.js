@@ -4,6 +4,7 @@ import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
+// import auth from "../../utils/auth"
 
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

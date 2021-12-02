@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreateItinerary.css";
@@ -25,11 +26,41 @@ function ItineraryCard(props) {
                 {/* if (!loggedIn) {hide} */}
                 {/* itin day */}
                 <li className="list-group-item">{days.day_number}</li>
+=======
+// import React, { useState } from "react";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "./CreateItinerary.css";
+// import Card from "react-bootstrap";
+// import CreateItinerary from "./CreateItinerary";
 
-                {/* Location = "city" in Itinerary Model*/}
+// function ItineraryCard(props) {
+//   return (
+//     <>
+//       {itinerary.map((itin) => {
+//         <Card className="featuredCard" key={itinerary.id}>
+//           <Card.Img className="cardImg" />
+//           <Card.Body>
+//             {/* Itinerary Preview Section */}
+//             {/* Title */}
+//             <Card.Title key={itin.id}>{itin.title}</Card.Title>
+//             {/* Description */}
+//             <Card.Text key={itin.id}>{itin.description}</Card.Text>
+//             {/* Price */}
+//             <Card.Text key={itin.id}>{itin.price}</Card.Text>
+//             {/* Preview End */}
+//             {/*  */}
+//             {itin.days.map((days) => {
+//               <ul className="list-group">
+//                 {/* if (!loggedIn) {hide} */}
+//                 {/* itin day */}
+//                 <li className="list-group-item">{days.day_number}</li>
+>>>>>>> dev
 
-                <li className="list-group-item">{days.city}</li>
+//                 {/* Location = "city" in Itinerary Model*/}
 
+//                 <li className="list-group-item">{days.city}</li>
+
+<<<<<<< HEAD
                 {/* Activities*/}
                 {days.activities.map((activity) => {
                   <li className="list-group-item">
@@ -47,5 +78,24 @@ function ItineraryCard(props) {
     </>
   );
 }
+=======
+//                 {/* Activities*/}
+//                 {days.map((activities) => {
+//                   <li className="list-group-item">
+//                     {(activities.where, activities.what, activities.cost)}
+//                   </li>;
+//                 })}
+//               </ul>;
+//             })}
+//           </Card.Body>
+//           <Card.Footer>
+//             <small key={itinerary.id}> Rating: {itinerary.ratings} </small>
+//           </Card.Footer>
+//         </Card>;
+//       })}
+//     </>
+//   );
+// }
+>>>>>>> dev
 
-export default ItineraryCard;
+// export default ItineraryCard;
