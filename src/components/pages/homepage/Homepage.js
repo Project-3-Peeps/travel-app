@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 // this is the css 
 import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -15,92 +15,88 @@ import Thailand from "./images/thailand.jpeg";
 import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
 import token from "../../utils/auth"
+import {useHistory} from "react-router-dom"
 // import { searchCity } from "../../utils/API";
-import jwt from "jsonwebtoken";
 
 console.log(token)
 
-function Homepage() {
+function Homepage(props) {
+  let history = useHistory()
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
-  
-  const [title, setTitle] = useState('') ;
+
+  const [title, setTitle] = useState('');
   const [description, setDesc] = useState('')
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
-      setCity(event.target.value);
+    setCity(event.target.value);
     // console.log(city)
   }
   // Once the form has been submitted, this function will post to the backend
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
     const cityQuery = {
-      city: city.toString()}
+      city: city.toString()
+    }
     console.log(cityQuery)
-    API.searchCity(token, cityQuery)
-    .then(res => {
-      // res.json(res)
-      console.log(res)
-      if(res.status === 200){
-        setTitle(res.data[0].title)
-        setDesc(res.data[0].description)
-        console.log("title and description", title," ", description)
-    
-      }else{
-        console.error(res.error)
-        //follow up with FE team to show error
-      }
-    })
+    const res = await API.searchCity(token, cityQuery)
+    props.setSearchInfo([res.data])
+    console.log(props.searchInfo)
+    history.push('/ItineraryCard')
+    // console.log(res)
+    // const title = res.data.title
+    // const description = res.data.description
   }
 
+
   return (
-   <> 
-   {/* this is the search section  */}
-    <div className="section1">
-    
-    <h1>What's Next on Your List?</h1>
-    <Form className="searchForm" onSubmit={() => API.searchCity(token,city)}>
+    <>
+      {/* this is the search section  */}
+      <div className="section1">
+
+        <h1>What's Next on Your List?</h1>
+        <Form className="searchForm" onSubmit={() => API.searchCity(token, city)}>
           <FormControl
             type="search"
             placeholder="Search for a city..."
             value={city}
             name="city"
             onChange={handleInputChange}
-            />
-            
+          />
+
           <Button type="submit" onClick={handleFormSubmit} className="searchBtn">Search</Button>
         </Form>
-    
-  </div>
-{/* this is the "about" section  */}
-  <div className="section2">
-  <h2>About</h2>
-    <div className="aboutCards">
-    <Card className="aboutCard"><h3>Get curated itineraries from travelers just like you!</h3></Card>
-    <Card className="aboutCard"><h3>Share your personal itineraries with the world!</h3></Card>
-    <Card className="aboutCard"><h3>You can buy an itinerary and rate your experience!</h3></Card>
-  </div>
-</div>
-{/* this is the featured section  */}
-<div className="section3">
-  <h2>Featured Itineraries</h2>
-  </div>
-    <div className="featuredCards">
-  <Card className="featuredCard">
-    <Card.Img  className="cardImg" src={France} />
-    <Card.Body>
-      <Card.Title>{title}</Card.Title>
-      <Card.Text>
-        {description}
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
-  {/* <Card className="featuredCard">
+
+      </div>
+      {/* this is the "about" section  */}
+      <div className="section2">
+        <h2>About</h2>
+        <div className="aboutCards">
+          <Card className="aboutCard"><h3>Get curated itineraries from travelers just like you!</h3></Card>
+          <Card className="aboutCard"><h3>Share your personal itineraries with the world!</h3></Card>
+          <Card className="aboutCard"><h3>You can buy an itinerary and rate your experience!</h3></Card>
+        </div>
+      </div>
+      {/* this is the featured section  */}
+      <div className="section3">
+        <h2>Featured Itineraries</h2>
+      </div>
+      <div className="featuredCards">
+        <Card className="featuredCard">
+          <Card.Img className="cardImg" src={France} />
+          <Card.Body>
+            <Card.Title>{title}</Card.Title>
+            <Card.Text>
+              {description}
+            </Card.Text>
+          </Card.Body>
+          <Card.Footer>
+            <small>Rating: ⭐⭐⭐⭐⭐</small>
+          </Card.Footer>
+        </Card>
+        {/* <Card className="featuredCard">
     <Card.Img src={Peru} />
     <Card.Body>
       <Card.Title>Adventure in Peru!</Card.Title>
@@ -148,7 +144,7 @@ function Homepage() {
       <small>Rating: ⭐⭐⭐⭐⭐</small>
     </Card.Footer> 
   </Card> */}
-  </div>
+      </div>
     </>
   );
 }
