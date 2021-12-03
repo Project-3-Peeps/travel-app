@@ -17,6 +17,7 @@ import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
 import token from "../../utils/auth";
 import { useHistory } from "react-router-dom";
+import ItineraryCard from "../itinerary/ItineraryCard";
 // import { searchCity } from "../../utils/API";
 
 console.log(token);
@@ -25,34 +26,24 @@ function Homepage(props) {
   let history = useHistory()
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
-  const [image, setImage] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDesc] = useState('')
-  const [rating, setRating] = useState('')
-  const [itins, setItins] = useState(0)
+  const [itins, setItins] = useState([])
 
-  const loadFeatured = () => {
-    API.getAllItineraries(token)
-      .then(response => {
-        // const iData = response.data
-        // console.log(iData)
-        // setItins(response)
-        if (response.status === 200) {
-          setTitle(response.data.map(a => a.title))
-          console.log(title)
-          setDesc(response.data.map(a => a.description))
-          console.log(description)
-          setImage(response.data.map(a => a.image))
-          setItins(title.length)
-          console.log(image)
-        } else {
-          console.error(response.error)
-        }
+  const loadFeatured = async () => {
+    try{
+      const response = await API.getAllItineraries()
+      console.log(response)
+      response.data.map((itin) => {
+        console.log(itin.description)
+        setItins(result => [...result, itin])
       })
+      console.log(itins)
+    } catch(err){
+      console.log(err)
+    }
   }
   useEffect(() => {
     loadFeatured()
-  },[])
+  }, [])
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -77,6 +68,17 @@ function Homepage(props) {
     // const description = res.data.description
   };
 
+  const handleRating = (rating) => {
+    let sum = 0;
+    if(rating.length > 0) {
+
+      for(let note of rating){
+        sum += note;
+      }
+      return sum/rating.length
+    }
+    return 0
+  }
 
   return (
     <>
@@ -123,68 +125,21 @@ function Homepage(props) {
         <h2>Featured Itineraries</h2>
       </div>
       <div className="featuredCards">
-        {/* {for (let i =0; i < )} */}
-        <Card className="featuredCard">
-          <Card.Img className="cardImg" src={image[0]} />
-          <Card.Body>
-            <Card.Title>{title[0]}</Card.Title>
-            <Card.Text>
-              {description[0]}
-            </Card.Text>
+        {itins.map(card => (
+          <Card className="featuredCard">
+            <Card.Img className="cardImg" src={card.image} />
+            <Card.Body>
+              <Card.Title>{card.title}</Card.Title>
+              <Card.Text>
+                {card.description}
+              </Card.Text>
 
-          </Card.Body>
-          <Card.Footer>
-            <small>Rating: ⭐⭐⭐⭐⭐</small>
-          </Card.Footer>
-        </Card>
-        {/* <Card className="featuredCard">
-    <Card.Img src={Peru} />
-    <Card.Body>
-      <Card.Title>Adventure in Peru!</Card.Title>
-      <Card.Text>
-        My itinerary is crafted for the adventurous traveler. I spent a week traveling in one of the most beautiful countries in the world. You'll find everything you need in my itinerary for the trip of a lifetime!
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
-  <Card className="featuredCard">
-    <Card.Img src={Seattle} />
-    <Card.Body>
-      <Card.Title>Explore the Emerald City</Card.Title>
-      <Card.Text>
-        This itinerary includes some of the coolest spots in the beautiful city of Seattle, Washington. I spent 3 days experiencing the mix of nature and urban jungle this city has to offer!
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
-  <Card className="featuredCard">
-    <Card.Img  className="cardImg" src={Thailand} />
-    <Card.Body>
-      <Card.Title>See Thailand</Card.Title>
-      <Card.Text>
-        If you've never been to Paris, this it the guide you will need. There's much more to this sprawling and historic metropolis than the Eiffel tower. I'll show you the best hidden gems I discovered on my 3 day trip in Paris.
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
-  <Card className="featuredCard">
-    <Card.Img  className="cardImg" src={Venice} />
-    <Card.Body>
-      <Card.Title>Get lost in Venice!</Card.Title>
-      <Card.Text>
-        If you've never been to Paris, this it the guide you will need. There's much more to this sprawling and historic metropolis than the Eiffel tower. I'll show you the best hidden gems I discovered on my 3 day trip in Paris.
-      </Card.Text>
-    </Card.Body>
-    <Card.Footer>
-      <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer> 
-  </Card> */}
+            </Card.Body>
+            <Card.Footer>
+              <small>Rating: {handleRating(card.ratings)}</small>
+            </Card.Footer>
+          </Card>
+        ))}
       </div>
     </>
   );
