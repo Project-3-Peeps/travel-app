@@ -16,11 +16,10 @@ import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
 import token from "../../utils/auth"
 // import { searchCity } from "../../utils/API";
-import jwt from "jsonwebtoken";
 
 console.log(token)
 
-function Homepage() {
+function Homepage(props) {
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
 
@@ -39,10 +38,11 @@ function Homepage() {
     console.log(cityQuery)
     API.searchCity(token, cityQuery)
     .then(res => {
-      // res.json(res)
-      console.log(res)
-      const title = res.data.title
-      const description = res.data.description
+      props.setSearchInfo(res.data)
+      window.location.replace('/ItineraryCard')
+      // console.log(res)
+      // const title = res.data.title
+      // const description = res.data.description
     })
   }
 

@@ -25,6 +25,9 @@ function App() {
   });
   const [token, setToken] = useState("");
 
+  const [searchInfo, setSearchInfo]= useState({
+    itineraries: []
+  })
   useEffect(() => {
     const myToken = auth.getToken();
     console.log("use effected");
@@ -63,7 +66,7 @@ function App() {
         </Route>
         <Route path="/ProfilePage">
           {" "}
-          <ProfilePage /                                   >
+          <ProfilePage />
         </Route>
         <Route path="/login">
           <LoginModal />
@@ -75,7 +78,7 @@ function App() {
           <ItineraryCard />
         </Route>
         <Route path="/">
-          <Homepage />
+          <Homepage searchInfo={searchInfo}/>
         </Route>
       </Switch>
 
