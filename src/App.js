@@ -29,22 +29,22 @@ function App() {
     const myToken = auth.getToken();
     console.log("use effected");
     console.log(myToken);
-    if (myToken) {
-      API.getProfile(myToken)
-        .then((res) => {
-          console.log("worked");
-          setToken(myToken);
-          setUserState({
-            email: res.data.email,
-            id: res.data.id,
-          });
-        })
-        .catch((err) => {
-          console.log("failed");
-          console.log(err);
-          localStorage.removeItem("token");
-        });
-    }
+    // if (myToken) {
+    //   API.getProfile(myToken)
+    //     .then((res) => {
+    //       console.log("worked");
+    //       setToken(myToken);
+    //       setUserState({
+    //         email: res.data.email,
+    //         id: res.data.id,
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       console.log("failed");
+    //       console.log(err);
+    //       localStorage.removeItem("token");
+    //     });
+    // }
   }, []);
 
   const logMeOut = () => {
