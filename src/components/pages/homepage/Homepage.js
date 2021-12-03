@@ -23,6 +23,7 @@ console.log(token);
 
 function Homepage() {
 
+   let history = useHistory();
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
   const [image, setImage] = useState('');
