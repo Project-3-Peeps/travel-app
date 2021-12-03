@@ -21,8 +21,8 @@ import { useHistory } from "react-router-dom";
 
 console.log(token);
 
-function Homepage() {
-
+function Homepage(props) {
+  let history = useHistory()
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
   const [image, setImage] = useState('');
