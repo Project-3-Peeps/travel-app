@@ -1,15 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
-import API from '../utils/API';
-import Auth from '../utils/auth';
+import API from "../utils/API";
+import Auth from "../utils/auth";
 
 // Import CSS
 import "./Modals.css";
 
 const SignupModal = () => {
   // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
 
@@ -31,7 +35,7 @@ const SignupModal = () => {
     try {
       const response = await API.signup(userFormData);
 
-      const { token, data } = await response
+      const { token, data } = await response;
       console.log(data);
       Auth.login(token);
     } catch (err) {
@@ -40,9 +44,9 @@ const SignupModal = () => {
     }
 
     setUserFormData({
-      username: '',
-      email: '',
-      password: '',
+      username: "",
+      email: "",
+      password: "",
     });
   };
 
@@ -58,7 +62,7 @@ const SignupModal = () => {
         Something went wrong with your signup!
       </Alert>
       <Form.Group>
-        <Form.Label>Username</Form.Label>
+        <Form.Label className="mt-2">Username</Form.Label>
         <Form.Control
           type="text"
           placeholder="Your username"
@@ -72,7 +76,7 @@ const SignupModal = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group>
-        <Form.Label>Email</Form.Label>
+        <Form.Label className="mt-2">Email</Form.Label>
         <Form.Control
           type="email"
           placeholder="Your email address"
@@ -86,7 +90,7 @@ const SignupModal = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Form.Group>
-        <Form.Label>Password</Form.Label>
+        <Form.Label className="mt-2">Password</Form.Label>
         <Form.Control
           type="password"
           placeholder="password"
@@ -100,6 +104,7 @@ const SignupModal = () => {
         </Form.Control.Feedback>
       </Form.Group>
       <Button
+        className="mt-3"
         disabled={
           !(
             userFormData.username &&
