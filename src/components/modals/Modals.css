@@ -1,4 +1,5 @@
-Form {
+.SignupModal,
+.LoginModal {
     margin-left: 150px;
     padding: 1%;
     margin-left: 620px;
