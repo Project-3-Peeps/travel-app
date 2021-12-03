@@ -84,6 +84,7 @@ function Homepage(props) {
         <h2>Featured Itineraries</h2>
       </div>
       <div className="featuredCards">
+        
         <Card className="featuredCard">
           <Card.Img className="cardImg" src={France} />
           <Card.Body>
