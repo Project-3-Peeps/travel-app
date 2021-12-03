@@ -1,16 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 
-import API from '../utils/API'
-import Auth from "../utils/auth"
+import API from "../utils/API";
+import Auth from "../utils/auth";
 
 // Import CSS
 import "./Modals.css";
 
 const LoginModal = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ email: "", password: "" });
   const [showAlert, setShowAlert] = useState(false);
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -29,10 +28,10 @@ const LoginModal = () => {
 
     try {
       const response = await API.login(userFormData);
-      console.log(response)
+      console.log(response);
 
-      const token = await response.data.token
-      console.log(token)
+      const token = await response.data.token;
+      console.log(token);
       Auth.login(token);
     } catch (err) {
       console.error(err);
@@ -40,16 +39,19 @@ const LoginModal = () => {
     }
 
     setUserFormData({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
-
 
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form onSubmit={handleFormSubmit} className="LoginModal">
+      <Form
+        onSubmit={handleFormSubmit}
+        className="modals"
+        className="LoginModal"
+      >
         {/* show alert if server response is bad */}
         <Alert
           dismissible
@@ -60,7 +62,7 @@ const LoginModal = () => {
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label>Email</Form.Label>
+          <Form.Label className="mt-2">Email</Form.Label>
           <Form.Control
             type="text"
             placeholder="Your email"
@@ -75,7 +77,7 @@ const LoginModal = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label>Password</Form.Label>
+          <Form.Label className="mt-2">Password</Form.Label>
           <Form.Control
             type="password"
             placeholder="Your password"
@@ -89,7 +91,7 @@ const LoginModal = () => {
           </Form.Control.Feedback>
         </Form.Group>
         <Button
-        
+          className="mt-3"
           disabled={!(userFormData.email && userFormData.password)}
           type="submit"
           variant="success"
