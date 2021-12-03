@@ -23,6 +23,9 @@ console.log(token)
 function Homepage() {
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
+  
+  const [title, setTitle] = useState('') ;
+  const [description, setDesc] = useState('')
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -33,7 +36,6 @@ function Homepage() {
   const handleFormSubmit = (event) => {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
-    alert(`You searched for ${city}`);
     const cityQuery = {
       city: city.toString()}
     console.log(cityQuery)
@@ -41,8 +43,15 @@ function Homepage() {
     .then(res => {
       // res.json(res)
       console.log(res)
-      const title = res.data.title
-      const description = res.data.description
+      if(res.status === 200){
+        setTitle(res.data[0].title)
+        setDesc(res.data[0].description)
+        console.log("title and description", title," ", description)
+    
+      }else{
+        console.error(res.error)
+        //follow up with FE team to show error
+      }
     })
   }
 
@@ -82,16 +91,16 @@ function Homepage() {
   <Card className="featuredCard">
     <Card.Img  className="cardImg" src={France} />
     <Card.Body>
-      <Card.Title>Experience Paris</Card.Title>
+      <Card.Title>{title}</Card.Title>
       <Card.Text>
-        If you've never been to Paris, this it the guide you will need. There's much more to this sprawling and historic metropolis than the Eiffel tower. I'll show you the best hidden gems I discovered on my 3 day trip in Paris.
+        {description}
       </Card.Text>
     </Card.Body>
     <Card.Footer>
       <small>Rating: ⭐⭐⭐⭐⭐</small>
     </Card.Footer>
   </Card>
-  <Card className="featuredCard">
+  {/* <Card className="featuredCard">
     <Card.Img src={Peru} />
     <Card.Body>
       <Card.Title>Adventure in Peru!</Card.Title>
@@ -137,8 +146,8 @@ function Homepage() {
     </Card.Body>
     <Card.Footer>
       <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
+    </Card.Footer> 
+  </Card> */}
   </div>
     </>
   );
