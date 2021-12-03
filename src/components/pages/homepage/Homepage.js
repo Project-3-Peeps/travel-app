@@ -16,11 +16,10 @@ import Venice from "./images/venice.jpeg";
 import API from "../../utils/API";
 import token from "../../utils/auth"
 // import { searchCity } from "../../utils/API";
-import jwt from "jsonwebtoken";
 
 console.log(token)
 
-function Homepage() {
+function Homepage(props) {
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
   

@@ -4,6 +4,7 @@ import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
+import ReactDOM from "react-dom";
 // import auth from "../../utils/auth"
 
 function CreateItinerary() {
@@ -76,7 +77,8 @@ function CreateItinerary() {
     const token = auth.getToken();
     const response = await API.createItinerary(token, newItinerary);
     console.log(response)
-    window.location.assign("/");
+    window.search = response
+    window.location.assign("/Itinerary Card");
   };
 
   return (
