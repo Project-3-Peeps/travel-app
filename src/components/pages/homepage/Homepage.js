@@ -22,6 +22,9 @@ console.log(token)
 function Homepage(props) {
   //sets up a state variable for "city" 
   const [city, setCity] = useState('');
+  
+  const [title, setTitle] = useState('') ;
+  const [description, setDesc] = useState('')
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -32,7 +35,6 @@ function Homepage(props) {
   const handleFormSubmit = (event) => {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
-    alert(`You searched for ${city}`);
     const cityQuery = {
       city: city.toString()}
     console.log(cityQuery)
@@ -82,16 +84,16 @@ function Homepage(props) {
   <Card className="featuredCard">
     <Card.Img  className="cardImg" src={France} />
     <Card.Body>
-      <Card.Title>Experience Paris</Card.Title>
+      <Card.Title>{title}</Card.Title>
       <Card.Text>
-        If you've never been to Paris, this it the guide you will need. There's much more to this sprawling and historic metropolis than the Eiffel tower. I'll show you the best hidden gems I discovered on my 3 day trip in Paris.
+        {description}
       </Card.Text>
     </Card.Body>
     <Card.Footer>
       <small>Rating: ⭐⭐⭐⭐⭐</small>
     </Card.Footer>
   </Card>
-  <Card className="featuredCard">
+  {/* <Card className="featuredCard">
     <Card.Img src={Peru} />
     <Card.Body>
       <Card.Title>Adventure in Peru!</Card.Title>
@@ -137,8 +139,8 @@ function Homepage(props) {
     </Card.Body>
     <Card.Footer>
       <small>Rating: ⭐⭐⭐⭐⭐</small>
-    </Card.Footer>
-  </Card>
+    </Card.Footer> 
+  </Card> */}
   </div>
     </>
   );
