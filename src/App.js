@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "./components/pages/homepage/Homepage";
 import Footer from "./components/Footer";
 import CreateItinerary from "./components/pages/itinerary/CreateItinerary";
-import ProfilePage from "./components/pages/profile/ProfilePage";
+// import ProfilePage from "./components/pages/profile/ProfilePage";
 import LoginModal from "./components/modals/LoginModal";
 import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
@@ -25,29 +25,27 @@ function App() {
   });
   const [token, setToken] = useState("");
 
-  const [searchInfo, setSearchInfo]= useState({
-    itineraries: []
-  })
+  const [searchInfo, setSearchInfo]= useState([])
   useEffect(() => {
     const myToken = auth.getToken();
     console.log("use effected");
     console.log(myToken);
-    if (myToken) {
-      API.getProfile(myToken)
-        .then((res) => {
-          console.log("worked");
-          setToken(myToken);
-          setUserState({
-            email: res.data.email,
-            id: res.data.id,
-          });
-        })
-        .catch((err) => {
-          console.log("failed");
-          console.log(err);
-          localStorage.removeItem("token");
-        });
-    }
+    // if (myToken) {
+    //   API.getProfile(myToken)
+    //     .then((res) => {
+    //       console.log("worked");
+    //       setToken(myToken);
+    //       setUserState({
+    //         email: res.data.email,
+    //         id: res.data.id,
+    //       });
+    //     })
+    //     .catch((err) => {
+    //       console.log("failed");
+    //       console.log(err);
+    //       localStorage.removeItem("token");
+    //     });
+    // }
   }, []);
 
   const logMeOut = () => {
@@ -64,10 +62,10 @@ function App() {
           {" "}
           <CreateItinerary />
         </Route>
-        <Route path="/ProfilePage">
+        {/* <Route path="/ProfilePage">
           {" "}
           <ProfilePage />
-        </Route>
+        </Route> */}
         <Route path="/login">
           <LoginModal />
         </Route>
@@ -75,10 +73,10 @@ function App() {
           <SignupModal />
         </Route>
         <Route path="/ItineraryCard">
-          <ItineraryCard />
+          <ItineraryCard searchInfo={searchInfo}/>
         </Route>
         <Route path="/">
-          <Homepage searchInfo={searchInfo}/>
+          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>
         </Route>
       </Switch>
 
