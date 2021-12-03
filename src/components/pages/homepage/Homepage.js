@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-// this is the css
-import axios from "axios";
+
+import React, { useState, useEffect } from "react";
+// this is the css 
+import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Homepage.css";
 import Form from "react-bootstrap/Form";
@@ -20,13 +21,38 @@ import { useHistory } from "react-router-dom";
 
 console.log(token);
 
-function Homepage(props) {
-  let history = useHistory();
-  //sets up a state variable for "city"
-  const [city, setCity] = useState("");
+function Homepage() {
 
-  const [title, setTitle] = useState("");
-  const [description, setDesc] = useState("");
+  //sets up a state variable for "city" 
+  const [city, setCity] = useState('');
+  const [image, setImage] = useState('');
+  const [title, setTitle] = useState('');
+  const [description, setDesc] = useState('')
+  const [rating, setRating] = useState('')
+  const [itins, setItins] = useState(0)
+
+  const loadFeatured = () => {
+    API.getAllItineraries(token)
+      .then(response => {
+        // const iData = response.data
+        // console.log(iData)
+        // setItins(response)
+        if (response.status === 200) {
+          setTitle(response.data.map(a => a.title))
+          console.log(title)
+          setDesc(response.data.map(a => a.description))
+          console.log(description)
+          setImage(response.data.map(a => a.image))
+          setItins(title.length)
+          console.log(image)
+        } else {
+          console.error(response.error)
+        }
+      })
+  }
+  useEffect(() => {
+    loadFeatured()
+  },[])
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -38,6 +64,7 @@ function Homepage(props) {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
     const cityQuery = {
+
       city: city.toString(),
     };
     console.log(cityQuery);
@@ -49,6 +76,7 @@ function Homepage(props) {
     // const title = res.data.title
     // const description = res.data.description
   };
+
 
   return (
     <>
@@ -66,7 +94,6 @@ function Homepage(props) {
             name="city"
             onChange={handleInputChange}
           />
-
           <Button
             type="submit"
             onClick={handleFormSubmit}
@@ -96,11 +123,15 @@ function Homepage(props) {
         <h2>Featured Itineraries</h2>
       </div>
       <div className="featuredCards">
+        {/* {for (let i =0; i < )} */}
         <Card className="featuredCard">
-          <Card.Img className="cardImg" src={France} />
+          <Card.Img className="cardImg" src={image[0]} />
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
-            <Card.Text>{description}</Card.Text>
+            <Card.Title>{title[0]}</Card.Title>
+            <Card.Text>
+              {description[0]}
+            </Card.Text>
+
           </Card.Body>
           <Card.Footer>
             <small>Rating: ⭐⭐⭐⭐⭐</small>
