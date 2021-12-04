@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
 // this is the css and bootstrap
@@ -10,8 +10,23 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import auth from "../components/utils/auth";
 
 function NavBar() {
+    
+    const [userState, setUserState] = useState({
+        email: "",
+        id: 0,
+      });
+
+    const [token, setToken] = useState("");
+
+    const logMeOut = () => {
+        setUserState({ email: "", id: 0 });
+        setToken("");
+        auth.logout()
+      };
+    
     return (
        
         <Container fluid>
@@ -38,7 +53,8 @@ function NavBar() {
                         <Link className="appTitle" to="/">Triptinerary</Link>
                     </Col>
                     <Col className="linkPlacement" >
-                        <Link className="loginLinks" to="/login">Login/Logout</Link>
+                        <Link className="loginLinks" to="/login">Login</Link>
+                        <Link className="loginLinks" onClick={()=> {logMeOut()}}>Logout</Link>
                         <Link className="loginLinks" to="/signup">Sign Up</Link>
                     </Col>
                 </Navbar>
