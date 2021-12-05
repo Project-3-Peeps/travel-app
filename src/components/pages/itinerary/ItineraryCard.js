@@ -7,20 +7,18 @@ import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
 import auth from "../../utils/auth"
 
-
 function ItineraryCard(props) {
 
   const handleRating = (rating) => {
     let sum = 0;
     if (rating.length > 0) {
-
       for (let note of rating) {
         sum += note;
       }
-      return sum / rating.length
+      return sum / rating.length;
     }
-    return 0
-  }
+    return 0;
+  };
 
   const submitPurchase = async (event) => {
     event.preventDefault()
@@ -40,9 +38,9 @@ function ItineraryCard(props) {
 
   return (
     <>
-      {props.searchInfo[0].map(itin => (
-        <Card onClick={submitPurchase} className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" />
+      {props.searchInfo[0].map((itin) => (
+        <Card className="featuredCard" key={itin._id}>
+          <Card.Img className="cardImg" key={itin.image} />
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}

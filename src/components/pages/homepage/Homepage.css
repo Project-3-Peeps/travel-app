@@ -51,15 +51,19 @@
     padding-top: 2%;
 }
 
-.aboutCards {
+
+/* .aboutCards {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     /* flex-wrap:wrap; */
-    padding: 1%;
-}
 
-.aboutCard {
+
+/* /* padding: 1%;
+} */
+
+
+/* .aboutCard {
     padding: 5%;
     margin: 5%;
     border-top: solid 2px #2e2313;
@@ -69,7 +73,7 @@
     border-radius: 100%;
     background: transparent;
     text-align: center;
-}
+} */
 
 .section3 h2 {
     text-align: center;
@@ -91,6 +95,10 @@
     margin-top: 2%;
     margin-bottom: 2%;
     box-shadow: #2e2313 0px 5px 15px;
+}
+
+.featuredCard:hover {
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
 }
 
 @media screen and (max-width: 950px) {
