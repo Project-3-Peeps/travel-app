@@ -75,7 +75,9 @@ function CreateItinerary() {
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
+    console.log("token", token)
     const response = await API.createItinerary(token, newItinerary);
+    console.log("hi")
     console.log(response)
     window.search = response
     window.location.assign("/Itinerary Card");

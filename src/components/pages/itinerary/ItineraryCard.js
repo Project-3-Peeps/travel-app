@@ -1,23 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreateItinerary.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
+import API from "../../utils/API"
 
+// console.log("token", token)
 
 function ItineraryCard(props) {
-  console.log(props.searchInfo[0])
-
+  console.log(props.searchInfo[0][0]._id)
+  // console.log("itin id", props.searchInfo)
+  // const itinObject = props.searchInfo[0]
   const handleRating = (rating) => {
     let sum = 0;
-    if(rating.length > 0) {
+    if (rating.length > 0) {
 
-      for(let note of rating){
+      for (let note of rating) {
         sum += note;
       }
-      return sum/rating.length
+      return sum / rating.length
     }
     return 0
+  }
+
+  const submitPurchase = async (event) => {
+    event.preventDefault()
+    try {
+      const token = localStorage.getItem("id_token")
+      const _id = {_id: event.target.getAttribute('dataKey')}
+      console.log(event.target.getAttribute('dataKey'))
+      const res = await API.purchaseItinerary(token, _id)
+      if (res){
+        alert('Itinerary purchase')
+        console.log('worked')
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -33,6 +52,7 @@ function ItineraryCard(props) {
             <Card.Text>{itin.description}</Card.Text>
             {/* Price */}
             <Card.Text>{itin.price}</Card.Text>
+            <button datakey={itin._id} onClick={submitPurchase}>Purchase</button>
             {/* Preview End */}
             {/*  */}
             {itin.days.map((day) => {
