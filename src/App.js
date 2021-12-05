@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // importing the pages and modals
 import Homepage from "./components/pages/homepage/Homepage";
@@ -11,21 +11,20 @@ import NavBar from "./components/NavBar";
 import ItineraryCard from "./components/pages/itinerary/ItineraryCard";
 // Import API
 import API from "./components/utils/API";
-import auth from "./components/utils/auth"
+import auth from "./components/utils/auth";
 
 // CSS and bootstrap
 import "./NavFooter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  
   const [userState, setUserState] = useState({
     email: "",
     id: 0,
   });
   const [token, setToken] = useState("");
 
-  const [searchInfo, setSearchInfo]= useState([])
+  const [searchInfo, setSearchInfo] = useState([]);
   useEffect(() => {
     const myToken = auth.getToken();
     console.log("use effected");
@@ -51,7 +50,7 @@ function App() {
   const logMeOut = () => {
     setUserState({ email: "", id: 0 });
     setToken("");
-    auth.logout()
+    auth.logout();
   };
   return (
     <Router>
@@ -73,10 +72,10 @@ function App() {
           <SignupModal />
         </Route>
         <Route path="/ItineraryCard">
-          <ItineraryCard searchInfo={searchInfo}/>
+          <ItineraryCard searchInfo={searchInfo} />
         </Route>
         <Route path="/">
-          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>
+          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} />
         </Route>
       </Switch>
 

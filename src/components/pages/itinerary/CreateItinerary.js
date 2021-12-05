@@ -5,7 +5,6 @@ import API from "../../utils/API";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
 import ReactDOM from "react-dom";
-// import auth from "../../utils/auth"
 
 function CreateItinerary() {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -137,7 +136,7 @@ function CreateItinerary() {
           />
         </Form.Group>
         <hr />
-        Day Form Inputs
+        {/* Day Form Inputs */}
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header id="days" name="days" value={newItinerary.days}>
@@ -202,7 +201,6 @@ function CreateItinerary() {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                // onClick={addActivity}
               >
                 + Add Day
               </Button>
