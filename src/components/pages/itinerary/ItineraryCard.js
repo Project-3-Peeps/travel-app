@@ -40,7 +40,7 @@ function ItineraryCard(props) {
     <>
       {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" key={itin.image} />
+          <Card.Img className="cardImg" src={itin.image}/>
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}

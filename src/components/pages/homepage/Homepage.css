@@ -14,6 +14,8 @@
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    border-top: solid 2px #2e2313;
+    border-bottom: solid 2px #2e2313;
 }
 
 .section1 h1 {
@@ -22,16 +24,19 @@
     text-shadow: 5px 5px 5px #2e2313;
 }
 
+
 .searchForm {
     display: flex;
     justify-content: space-between;
     width: 30%;
     box-shadow: #2e2313 0px 5px 15px;
+    
 }
 
 .searchBtn {
     background: #2e2313;
-    border: grey;
+    border: #2e2313;
+    border-radius: 2px;
 }
 
 .searchBtn :hover {
@@ -46,7 +51,8 @@
 }
 
 .section2 h2 {
-    color: #2e2313;
+    color: white;
+    text-shadow: 3px 3px 5px #2e2313;
     text-align: center;
     padding-top: 2%;
 }
@@ -73,13 +79,16 @@
     border-radius: 100%;
     background: transparent;
     text-align: center;
-} */
+    color: white;
+    text-shadow: 3px 3px 5px #2e2313;
+}*/
 
 .section3 h2 {
     text-align: center;
     padding-top: 2%;
     padding-bottom: 3%;
     color: #2e2313;
+    text-shadow: 1px 1px 5px grey;
 }
 
 .featuredCards {
