@@ -4,25 +4,23 @@ import "./CreateItinerary.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 
-
 function ItineraryCard(props) {
-  console.log(props.searchInfo[0])
+  console.log(props.searchInfo[0]);
 
   const handleRating = (rating) => {
     let sum = 0;
-    if(rating.length > 0) {
-
-      for(let note of rating){
+    if (rating.length > 0) {
+      for (let note of rating) {
         sum += note;
       }
-      return sum/rating.length
+      return sum / rating.length;
     }
-    return 0
-  }
+    return 0;
+  };
 
   return (
     <>
-      {props.searchInfo[0].map(itin => (
+      {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
           <Card.Img className="cardImg" src={itin.image}/>
           <Card.Body>

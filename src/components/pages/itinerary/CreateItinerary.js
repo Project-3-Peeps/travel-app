@@ -14,6 +14,8 @@ function CreateItinerary(props) {
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     creator: "Change this later",
+    // Added image field
+    image: "",
     title: "",
     description: "",
     price: "",
@@ -23,44 +25,45 @@ function CreateItinerary(props) {
   const [newDay, setNewDay] = useState({
     city: "",
     activities: [],
-    // TODO: change day_number lenght 
-    day_number: 1
-  })
+    // TODO: change day_number lenght
+    day_number: 1,
+  });
   const [newActivities, setActivities] = useState({
     where: "",
     what: "",
-    cost: ""
-  })
+    cost: "",
+  });
 
   // Dealing with name field changes to update our state
   const handleInputChange = (event) => {
     // const name = event.target.name;
     if (
-      event.target.name === "what" ||  event.target.name === "where" || event.target.name === "cost"
+      event.target.name === "what" ||
+      event.target.name === "where" ||
+      event.target.name === "cost"
     ) {
       setActivities({
         ...newActivities,
-        [event.target.name]: event.target.value
-      })
+        [event.target.name]: event.target.value,
+      });
 
       setNewDay({
         ...newDay,
-        activities: [newActivities]
-      })
+        activities: [newActivities],
+      });
       setNewItinerary({
         ...newItinerary,
-        days: [newDay]
-      })
+        days: [newDay],
+      });
     } else if (event.target.name === "city") {
       setNewDay({
         ...newDay,
-        [event.target.name]: event.target.value
-      })
+        [event.target.name]: event.target.value,
+      });
       setNewItinerary({
         ...newItinerary,
-        days: [newDay]
-      })
-
+        days: [newDay],
+      });
     } else {
       setNewItinerary({
         ...newItinerary,
@@ -68,14 +71,13 @@ function CreateItinerary(props) {
       });
     }
   };
-  
+
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = async (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-  
-    console.log("submit")
-    console.log(newItinerary)
+    console.log("submit");
+    console.log(newItinerary);
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
@@ -91,7 +93,18 @@ function CreateItinerary(props) {
     <div className="container">
       <p className="form-header">Create Your Triptinerary</p>
       {/* Intinerary Preview Info */}
-      <Form >
+      <Form>
+        {/* Input for Image URL */}
+        <Form.Group className="mb-3">
+          <Form.Label id="image">Image 📷</Form.Label>
+          <Form.Control
+            value={newItinerary.image}
+            name="image"
+            onChange={handleInputChange}
+            type="text"
+            placeholder="Add your image url here"
+          />
+        </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label id="title">Title</Form.Label>
           <Form.Control
@@ -194,7 +207,7 @@ function CreateItinerary(props) {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-              // onClick={addActivity}
+                // onClick={addActivity}
               >
                 + Add Day
               </Button>
@@ -203,7 +216,11 @@ function CreateItinerary(props) {
         </Accordion>
         <br />
         <Form.Group className="text-center">
-          <Button className="btn-submit rounded-pill m-2" size="md" onClick={handleFormSubmit}>
+          <Button
+            className="btn-submit rounded-pill m-2"
+            size="md"
+            onClick={handleFormSubmit}
+          >
             Save Itinerary
           </Button>
         </Form.Group>
