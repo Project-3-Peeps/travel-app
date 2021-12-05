@@ -28,7 +28,6 @@ function Homepage(props) {
   const [itins, setItins] = useState([]);
 
   const loadFeatured = async () => {
-<<<<<<< HEAD
     try{
       const response = await API.getAllItineraries()
       console.log(response)
@@ -40,32 +39,15 @@ function Homepage(props) {
       // console.log(itins)
     } catch(err){
       console.log(err)
-=======
-    try {
-      const response = await API.getAllItineraries();
-      console.log(response);
-      response.data.map((itin) => {
-        console.log(itin.description);
-        setItins((result) => [...result, itin]);
-      });
-      console.log(itins);
-    } catch (err) {
-      console.log(err);
->>>>>>> dev
     }
   };
   useEffect(() => {
-<<<<<<< HEAD
     if(itins.length === 0 ) {
       
     loadFeatured()
     }
     console.log(itins);
   }, [itins])
-=======
-    loadFeatured();
-  }, []);
->>>>>>> dev
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change

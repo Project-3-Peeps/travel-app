@@ -6,14 +6,11 @@ import token from "../../utils/auth";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
 import ReactDOM from "react-dom";
-<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
 // import auth from "../../utils/auth"
-=======
->>>>>>> dev
 
 function CreateItinerary(props) {
-  // let history = useHistory()
+  let history = useHistory()
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     creator: "Change this later",
@@ -81,15 +78,16 @@ function CreateItinerary(props) {
     event.preventDefault();
     console.log("submit");
     console.log(newItinerary);
+    props.setViewItin(newItinerary)
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
     const response = await API.createItinerary(token, newItinerary);
-    props.setViewItin([response.data]);
+    // props.setViewItin([response.data]);
     console.log(response)
     window.search = response
-    window.location.assign("/ViewItinerary");
-    // history.push("/ViewItinerary");
+    // window.location.assign("/ViewItinerary");
+    history.push("/ViewItinerary");
   };
 
   return (

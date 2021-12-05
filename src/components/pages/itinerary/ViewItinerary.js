@@ -1,49 +1,48 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./CreateItinerary.css";
+import "./ViewItinerary.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 
 
 function ViewItinerary(props) {
-  console.log(props.viewItin[[0]]);
+//   console.log(props.viewItin[[0]]);
 
-  const handleRating = (rating) => {
-    let sum = 0;
-    if(rating.length > 0) {
+//   const handleRating = (rating) => {
+//     let sum = 0;
+//     if(rating.length > 0) {
 
-      for(let note of rating){
-        sum += note;
-      }
-      return sum/rating.length
-    }
-    return 0
-  }
-
+//       for(let note of rating){
+//         sum += note;
+//       }
+//       return sum/rating.length
+//     }
+//     return 0
+//   }
+console.log(props.viewItin);
   return (
+
     <>
-      {props.viewItin[0].map(itin => (
-        <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" src={itin.image}/>
+    
+     
+        <Card className="featuredCard" key={props.viewItin._id}>
+          <Card.Img className="cardImg" src={props.viewItin.image}/>
           <Card.Body>
-            {/* Itinerary Preview Section */}
-            {/* Title */}
-            <Card.Title>{itin.title}</Card.Title>
-            {/* Description */}
-            <Card.Text>{itin.description}</Card.Text>
-            {/* Price */}
-            <Card.Text>{itin.price}</Card.Text>
-            <Card.Text>Day 1 Activities</Card.Text>
-            {/* Preview End */}
-            {/*  */}
-            {itin.days.map((day) => {
+           
+            <Card.Title>{props.viewItin.title}</Card.Title>
+            
+            <Card.Text>{props.viewItin.description}</Card.Text>
+            
+            <Card.Text>{props.viewItin.price}</Card.Text>
+            {/* <Card.Text>Day 1 Activities</Card.Text> */}
+            
+            {props.viewItin.days.map((day) => {
               <ul className="list-group">
-                {/* if (!loggedIn) {hide} */}
-                {/* itin day */}
+               
                 <li className="list-group-item">{day.day_number}</li>
-                {/* Location = "city" in Itinerary Model*/}
+               
                 <li className="list-group-item">{day.city}</li>
-                {/* Activities*/}
+               
                 {day.activities.map((activity) => {
                   <li className="list-group-item">
                     {(activity.where, activity.what, activity.cost)}
@@ -53,10 +52,10 @@ function ViewItinerary(props) {
             })}
           </Card.Body>
           <Card.Footer>
-            <small> Rating: {handleRating(itin.ratings)} </small>
+            {/* <small> Rating: {props.viewItin.ratings} </small> */}
           </Card.Footer>
-        </Card>
-      ))}
+        </Card> 
+      
     </>
   );
 }

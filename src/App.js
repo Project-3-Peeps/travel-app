@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Homepage from "./components/pages/homepage/Homepage";
 import Footer from "./components/Footer";
 import CreateItinerary from "./components/pages/itinerary/CreateItinerary";
-// import ProfilePage from "./components/pages/profile/ProfilePage";
+import ProfilePage from "./components/pages/profile/ProfilePage";
 import LoginModal from "./components/modals/LoginModal";
 import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
@@ -24,13 +24,8 @@ function App() {
     id: 0,
   });
   const [token, setToken] = useState("");
-
-<<<<<<< HEAD
   const [searchInfo, setSearchInfo]= useState([]);
   const [viewItin, setViewItin]= useState([[]]);
-=======
-  const [searchInfo, setSearchInfo] = useState([]);
->>>>>>> dev
   useEffect(() => {
     // console.log(searchInfo);
     // const myToken = auth.getToken();
@@ -68,10 +63,10 @@ function App() {
           {" "}
           <CreateItinerary viewItin={viewItin} setViewItin={setViewItin}/>
         </Route>
-        {/* <Route path="/ProfilePage">
-          {" "}
+        <Route path="/ProfilePage">
+          {/* {" "} */}
           <ProfilePage />
-        </Route> */}
+        </Route>
         <Route path="/login">
           <LoginModal />
         </Route>

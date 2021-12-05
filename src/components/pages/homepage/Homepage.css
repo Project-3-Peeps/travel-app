@@ -15,6 +15,7 @@
     background-size: cover;
     position: relative;
     border-top: solid 2px #2e2313;
+    border-bottom: solid 2px #2e2313;
 }
 
 .section1 h1 {
@@ -22,6 +23,7 @@
     font-weight: bold;
     text-shadow: 5px 5px 5px #2e2313;
 }
+
 
 .searchForm {
     display: flex;
@@ -77,13 +79,9 @@
     border-radius: 100%;
     background: transparent;
     text-align: center;
-<<<<<<< HEAD
     color: white;
     text-shadow: 3px 3px 5px #2e2313;
-}
-=======
-} */
->>>>>>> dev
+}*/
 
 .section3 h2 {
     text-align: center;
