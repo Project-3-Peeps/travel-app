@@ -51,11 +51,12 @@ const API = {
       },
     });
   },
+  
   // user _id must go inside the token, and itinerary _id inside the body
-  purchaseItinerary: (token, itinerary_id) => {
+  purchaseItinerary: (token, _id) => {
     return axios.put(
       `${URL_PREFIX}/api/users/purchaseItinerary`,
-      itinerary_id,
+      _id,
       {
         headers: {
           Authorization: `Bearer ${token}`,

@@ -66,9 +66,6 @@ function Homepage(props) {
     props.setSearchInfo([res.data]);
     console.log(props.searchInfo);
     history.push("/ItineraryCard");
-    // console.log(res)
-    // const title = res.data.title
-    // const description = res.data.description
   };
 
   const handleRating = (rating) => {
