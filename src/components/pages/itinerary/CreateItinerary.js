@@ -6,8 +6,11 @@ import token from "../../utils/auth";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
 import ReactDOM from "react-dom";
+<<<<<<< HEAD
 import { useHistory } from "react-router-dom";
 // import auth from "../../utils/auth"
+=======
+>>>>>>> dev
 
 function CreateItinerary(props) {
   // let history = useHistory()
@@ -142,7 +145,7 @@ function CreateItinerary(props) {
           />
         </Form.Group>
         <hr />
-        Day Form Inputs
+        {/* Day Form Inputs */}
         <Accordion defaultActiveKey="0">
           <Accordion.Item eventKey="0">
             <Accordion.Header id="days" name="days" value={newItinerary.days}>
@@ -207,7 +210,6 @@ function CreateItinerary(props) {
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
-                // onClick={addActivity}
               >
                 + Add Day
               </Button>
