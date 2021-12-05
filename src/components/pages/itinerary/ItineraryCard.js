@@ -1,29 +1,47 @@
 import React, { useState } from "react";
+import ReactDOM from 'react-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./CreateItinerary.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
+import API from "../../utils/API"
+import auth from "../../utils/auth"
 
 
 function ItineraryCard(props) {
-  console.log(props.searchInfo[0])
 
   const handleRating = (rating) => {
     let sum = 0;
-    if(rating.length > 0) {
+    if (rating.length > 0) {
 
-      for(let note of rating){
+      for (let note of rating) {
         sum += note;
       }
-      return sum/rating.length
+      return sum / rating.length
     }
     return 0
+  }
+
+  const submitPurchase = async (event) => {
+    event.preventDefault()
+    try {
+      const token = auth.getToken()
+      const _id = {_id: event.target.getAttribute('dataKey')}
+      console.log(event.target.getAttribute('dataKey'))
+      const res = await API.purchaseItinerary(token, _id)
+      if (res){
+        alert('Itinerary purchase')
+        console.log('worked')
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
     <>
       {props.searchInfo[0].map(itin => (
-        <Card className="featuredCard" key={itin._id}>
+        <Card onClick={submitPurchase} className="featuredCard" key={itin._id}>
           <Card.Img className="cardImg" />
           <Card.Body>
             {/* Itinerary Preview Section */}
@@ -35,6 +53,7 @@ function ItineraryCard(props) {
             <Card.Text>{itin.price}</Card.Text>
             {/* Preview End */}
             {/*  */}
+            <button dataKey={itin._id}>here</button>
             {itin.days.map((day) => {
               <ul className="list-group">
                 {/* if (!loggedIn) {hide} */}
