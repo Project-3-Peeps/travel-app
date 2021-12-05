@@ -9,6 +9,7 @@ import LoginModal from "./components/modals/LoginModal";
 import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
 import ItineraryCard from "./components/pages/itinerary/ItineraryCard";
+import ViewItinerary from "./components/pages/itinerary/ViewItinerary";
 // Import API
 import API from "./components/utils/API";
 import auth from "./components/utils/auth";
@@ -23,12 +24,13 @@ function App() {
     id: 0,
   });
   const [token, setToken] = useState("");
-
-  const [searchInfo, setSearchInfo] = useState([]);
+  const [searchInfo, setSearchInfo]= useState([]);
+  const [viewItin, setViewItin]= useState([[]]);
   useEffect(() => {
-    const myToken = auth.getToken();
+    // console.log(searchInfo);
+    // const myToken = auth.getToken();
     console.log("use effected");
-    console.log(myToken);
+    // console.log(myToken);
     // if (myToken) {
     //   API.getProfile(myToken)
     //     .then((res) => {
@@ -59,9 +61,10 @@ function App() {
       <Switch>
         <Route path="/CreateItinerary">
           {" "}
-          <CreateItinerary />
+          <CreateItinerary viewItin={viewItin} setViewItin={setViewItin}/>
         </Route>
         <Route path="/ProfilePage">
+          {/* {" "} */}
           <ProfilePage />
         </Route>
         <Route path="/login">
@@ -72,6 +75,9 @@ function App() {
         </Route>
         <Route path="/ItineraryCard">
           <ItineraryCard searchInfo={searchInfo} />
+        </Route>
+        <Route path="/ViewItinerary">
+          <ViewItinerary viewItin={viewItin}/>
         </Route>
         <Route path="/">
           <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} />

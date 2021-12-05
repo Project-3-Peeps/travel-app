@@ -28,21 +28,26 @@ function Homepage(props) {
   const [itins, setItins] = useState([]);
 
   const loadFeatured = async () => {
-    try {
-      const response = await API.getAllItineraries();
-      console.log(response);
-      response.data.map((itin) => {
-        console.log(itin.description);
-        setItins((result) => [...result, itin]);
-      });
-      console.log(itins);
-    } catch (err) {
-      console.log(err);
+    try{
+      const response = await API.getAllItineraries()
+      console.log(response)
+      // response.data.map((itin) => {
+      //   console.log(itin.description)
+      //   setItins(result => [...result, itin])
+      // })
+      setItins([...response.data])
+      // console.log(itins)
+    } catch(err){
+      console.log(err)
     }
   };
   useEffect(() => {
-    loadFeatured();
-  }, []);
+    if(itins.length === 0 ) {
+      
+    loadFeatured()
+    }
+    console.log(itins);
+  }, [itins])
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -64,6 +69,10 @@ function Homepage(props) {
   };
 
   const handleRating = (rating) => {
+    // console.log(rating);
+    if (!rating ) {
+      return;
+    }
     let sum = 0;
     if (rating.length > 0) {
       for (let note of rating) {
@@ -104,13 +113,13 @@ function Homepage(props) {
         <h2>About</h2>
         <div className="aboutCards">
           <Card className="aboutCard">
-            <h3>Get curated itineraries from travelers just like you!</h3>
+            <h4>Get curated itineraries from travelers just like you!</h4>
           </Card>
           <Card className="aboutCard">
-            <h3>Share your personal itineraries with the world!</h3>
+            <h4>Share your personal itineraries with the world!</h4>
           </Card>
           <Card className="aboutCard">
-            <h3>You can buy an itinerary and rate your experience!</h3>
+            <h4>You can buy an itinerary and rate your experience!</h4>
           </Card>
         </div>
       </div> */}
