@@ -10,26 +10,26 @@ import auth from "../../utils/auth"
 
 function ProfilePage() {
 
+// //  const [rating, setRating] = useState(0)
 //  const [rating, setRating] = useState(0)
- const [rating, setRating] = useState(0)
-  const handleRating = (rate) => {
-    // console.log(rating);
-    setRating(rate/20);
-    console.log(rate/20)
-    // console.log(rating)
-    // if (!rate) {
-    //   return;
-    // }
-    // let sum = 0;
-    // if (rate.length > 0) {
-    //   for (let note of rate) {
-    //     sum += note;
-    //   }
-    //   return sum / rate.length;
-    // }
-    // return 0;
+//   const handleRating = (rate) => {
+//     // console.log(rating);
+//     setRating(rate/20);
+//     console.log(rate/20)
+//     // console.log(rating)
+//     // if (!rate) {
+//     //   return;
+//     // }
+//     // let sum = 0;
+//     // if (rate.length > 0) {
+//     //   for (let note of rate) {
+//     //     sum += note;
+//     //   }
+//     //   return sum / rate.length;
+//     // }
+//     // return 0;
     
-  };
+//   };
   const [purchased, setPurchased] = useState([]);
   const [saved, setSaved] = useState([]);
   const loadPurchased = async () => {
@@ -37,10 +37,10 @@ function ProfilePage() {
       const token = localStorage.getItem("id_token")
       console.log(token)
       const response = await API.getPurchasedItineraries(token);
-      console.log(response)
-      const purchased = response.data.purchased_itinerary
+      console.log("data",response)
+      const purchased = response.data.purchased_itinerary   
       const saved = response.data.saved_itinerary
-      console.log("purchased", purchased.shift(), "saved", saved.shift())
+      console.log("purchasedddd",purchased.shift(), "saved", saved.shift())
       setPurchased(purchased)
       setSaved(saved)
     } catch (err) {
