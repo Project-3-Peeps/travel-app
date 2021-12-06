@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ViewItinerary.css";
 import Card from "react-bootstrap/Card";
-import CreateItinerary from "./CreateItinerary";
+// import CreateItinerary from "./CreateItinerary";
 
 
 function ViewItinerary(props) {
@@ -22,7 +22,7 @@ function ViewItinerary(props) {
 console.log(props.viewItin);
   return (
 
-    <>
+    <div className="youritinerarycard">
     
      
         <Card className="featuredCard" key={props.viewItin._id}>
@@ -33,30 +33,30 @@ console.log(props.viewItin);
             
             <Card.Text>{props.viewItin.description}</Card.Text>
             
-            <Card.Text>{props.viewItin.price}</Card.Text>
+            <Card.Text>${props.viewItin.price} to purchase.</Card.Text>
             {/* <Card.Text>Day 1 Activities</Card.Text> */}
             
-            {props.viewItin.days.map((day) => {
+            {/* {props.viewItin.days.map((days) => {
               <ul className="list-group">
                
-                <li className="list-group-item">{day.day_number}</li>
+                <li className="list-group-item">{props.viewItin.days.day_number}</li>
                
-                <li className="list-group-item">{day.city}</li>
+                <li className="list-group-item">{props.viewItin.days.city}</li>
                
-                {day.activities.map((activity) => {
+                {props.viewItin.day.activities.map((activities) => {
                   <li className="list-group-item">
-                    {(activity.where, activity.what, activity.cost)}
+                    {(props.viewItin.activities.where, props.viewItin.activities.what, props.viewItin.activities.cost)}
                   </li>;
                 })}
               </ul>;
-            })}
+            })} */}
           </Card.Body>
           <Card.Footer>
             {/* <small> Rating: {props.viewItin.ratings} </small> */}
           </Card.Footer>
         </Card> 
       
-    </>
+    </div>
   );
 }
 export default ViewItinerary;

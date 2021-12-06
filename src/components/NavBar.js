@@ -17,8 +17,8 @@ import auth from "../components/utils/auth";
 // New imports
 import Modal from "react-bootstrap/Modal";
 import Tab from "react-bootstrap/Tab";
-import LoginForm from "react-bootstrap/Form";
-import SignUpForm from "react-bootstrap/Form";
+// import LoginForm from "react-bootstrap/Form";
+// import SignUpForm from "react-bootstrap/Form";
 
 
 // Import CSS
@@ -57,11 +57,11 @@ function NavBar() {
                       Create an Itinerary
                     </Link>
                   </Nav.Link>
-                  {/* <Nav.Link>
-                    <Link className="popOutLinks" to="/ItineraryCard">
-                      Itinerary Card
+                  <Nav.Link>
+                    <Link className="popOutLinks" to="/Explore">
+                      Explore All Itineraries
                     </Link>
-                  </Nav.Link> */}
+                  </Nav.Link>
                 </Nav>
               </Offcanvas.Body>
             </Navbar.Offcanvas>

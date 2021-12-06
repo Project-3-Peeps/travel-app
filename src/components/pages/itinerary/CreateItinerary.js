@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
-import token from "../../utils/auth";
+// import token from "../../utils/auth";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import { useHistory } from "react-router-dom";
 // import auth from "../../utils/auth"
 
