@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 // this is the css
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+
 // these are the images
 import France from "./images/france.jpeg";
 import Seattle from "./images/seattle.jpeg";
@@ -28,26 +30,25 @@ function Homepage(props) {
   const [itins, setItins] = useState([]);
 
   const loadFeatured = async () => {
-    try{
-      const response = await API.getAllItineraries()
-      console.log(response)
+    try {
+      const response = await API.getAllItineraries();
+      console.log(response);
       // response.data.map((itin) => {
       //   console.log(itin.description)
       //   setItins(result => [...result, itin])
       // })
-      setItins([...response.data])
+      setItins([...response.data]);
       // console.log(itins)
-    } catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
   };
   useEffect(() => {
-    if(itins.length === 0 ) {
-      
-    loadFeatured()
+    if (itins.length === 0) {
+      loadFeatured();
     }
     console.log(itins);
-  }, [itins])
+  }, [itins]);
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -70,7 +71,7 @@ function Homepage(props) {
 
   const handleRating = (rating) => {
     // console.log(rating);
-    if (!rating ) {
+    if (!rating) {
       return;
     }
     let sum = 0;
@@ -135,8 +136,11 @@ function Homepage(props) {
               <Card.Title>{card.title}</Card.Title>
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="card-footer">
               <small>Rating: {handleRating(card.ratings)}</small>
+              <Link to="/ViewItinerary" className="details">
+                <small>See Details</small>
+              </Link>
             </Card.Footer>
           </Card>
         ))}
