@@ -1,3 +1,7 @@
 .navModal {
     cursor: pointer;
 }
+
+.linkPlacement {
+    justify-content: flex-end;
+}
