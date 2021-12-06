@@ -140,3 +140,12 @@
         width: 50%;
     }
 }
+
+.card-footer {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.details {
+    text-decoration: none;
+}
