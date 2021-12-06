@@ -70,18 +70,18 @@ function CreateItinerary(props) {
         [event.target.name]: event.target.value,
       });
     }
+    console.log(newItinerary)
   };
 
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = async (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    console.log("submit");
-    console.log(newItinerary);
     props.setViewItin(newItinerary)
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
+    console.log("token", token)
     const response = await API.createItinerary(token, newItinerary);
     // props.setViewItin([response.data]);
     console.log(response)

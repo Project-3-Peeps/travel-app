@@ -118,7 +118,7 @@ function Homepage(props) {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer className="card-footer">
-              <small>Rating: {handleRating(card.ratings)}</small>
+              {/* <small>Rating: {handleRating(card.ratings)}</small> */}
               <Link to="/ViewItinerary" className="details">
                 <small>See Details</small>
               </Link>
