@@ -55,11 +55,6 @@ background: #e0e6e0;
  
 }
 
-.footerSpacing {
-
- 
-}
-
 .icon {
  
  margin-left: 10px;
@@ -75,5 +70,8 @@ background: #e0e6e0;
     }
     .footer{
       align-items: center;
+    }
+    .mobilesizing{
+      font-size: x-small;
     }
 }
