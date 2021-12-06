@@ -23,7 +23,7 @@ function ProfilePage() {
       console.log(err)
     })
     // console.log(rating);
-    setRating(rating/20);
+    setRating(rating);
     // console.log(rate/20)
     // console.log(_id)
     // console.log(rati
