@@ -1,7 +1,6 @@
-
 import React, { useState, useEffect } from "react";
-// this is the css 
-import axios from 'axios'
+// this is the css
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Homepage.css";
 import Form from "react-bootstrap/Form";
@@ -23,27 +22,27 @@ import ItineraryCard from "../itinerary/ItineraryCard";
 console.log(token);
 
 function Homepage(props) {
-  let history = useHistory()
-  //sets up a state variable for "city" 
-  const [city, setCity] = useState('');
-  const [itins, setItins] = useState([])
+  let history = useHistory();
+  //sets up a state variable for "city"
+  const [city, setCity] = useState("");
+  const [itins, setItins] = useState([]);
 
   const loadFeatured = async () => {
-    try{
-      const response = await API.getAllItineraries()
-      console.log(response)
+    try {
+      const response = await API.getAllItineraries();
+      console.log(response);
       response.data.map((itin) => {
-        console.log(itin.description)
-        setItins(result => [...result, itin])
-      })
-      console.log(itins)
-    } catch(err){
-      console.log(err)
+        console.log(itin.description);
+        setItins((result) => [...result, itin]);
+      });
+      console.log(itins);
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
   useEffect(() => {
-    loadFeatured()
-  }, [])
+    loadFeatured();
+  }, []);
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -55,7 +54,6 @@ function Homepage(props) {
     //prevent default behavior of the form, which is to refresh the page
     event.preventDefault();
     const cityQuery = {
-
       city: city.toString(),
     };
     console.log(cityQuery);
@@ -67,28 +65,27 @@ function Homepage(props) {
 
   const handleRating = (rating) => {
     let sum = 0;
-    if(rating.length > 0) {
-
-      for(let note of rating){
+    if (rating.length > 0) {
+      for (let note of rating) {
         sum += note;
       }
-      return sum/rating.length
+      return sum / rating.length;
     }
-    return 0
-  }
+    return 0;
+  };
 
   return (
     <>
       {/* this is the search section  */}
       <div className="section1">
-        <h1>What's Next on Your List?</h1>
+        <h1>Explore and share travel itineraries</h1>
         <Form
           className="searchForm"
           onSubmit={() => API.searchCity(token, city)}
         >
           <FormControl
             type="search"
-            placeholder="Search for a city..."
+            placeholder="What's next on your list?"
             value={city}
             name="city"
             onChange={handleInputChange}
@@ -103,7 +100,7 @@ function Homepage(props) {
         </Form>
       </div>
       {/* this is the "about" section  */}
-      <div className="section2">
+      {/* <div className="section2">
         <h2>About</h2>
         <div className="aboutCards">
           <Card className="aboutCard">
@@ -116,21 +113,18 @@ function Homepage(props) {
             <h3>You can buy an itinerary and rate your experience!</h3>
           </Card>
         </div>
-      </div>
+      </div> */}
       {/* this is the featured section  */}
       <div className="section3">
         <h2>Featured Itineraries</h2>
       </div>
       <div className="featuredCards">
-        {itins.map(card => (
+        {itins.map((card) => (
           <Card className="featuredCard">
             <Card.Img className="cardImg" src={card.image} />
             <Card.Body>
               <Card.Title>{card.title}</Card.Title>
-              <Card.Text>
-                {card.description}
-              </Card.Text>
-
+              <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
               <small>Rating: {handleRating(card.ratings)}</small>

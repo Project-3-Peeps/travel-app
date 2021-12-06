@@ -5,23 +5,19 @@ import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
 
-// console.log("token", token)
-
 function ItineraryCard(props) {
-  console.log(props.searchInfo[0][0]._id)
-  // console.log("itin id", props.searchInfo)
-  // const itinObject = props.searchInfo[0]
+  console.log(props.searchInfo[0]);
+
   const handleRating = (rating) => {
     let sum = 0;
     if (rating.length > 0) {
-
       for (let note of rating) {
         sum += note;
       }
-      return sum / rating.length
+      return sum / rating.length;
     }
-    return 0
-  }
+    return 0;
+  };
 
   const submitPurchase = async (event) => {
     event.preventDefault()
@@ -41,9 +37,9 @@ function ItineraryCard(props) {
 
   return (
     <>
-      {props.searchInfo[0].map(itin => (
+      {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" />
+          <Card.Img className="cardImg" key={itin.image} />
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}

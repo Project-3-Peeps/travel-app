@@ -1,20 +1,93 @@
-import React from "react";
+import React, { useState, useEffect} from "react";
 // the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import  "./ProfilePage.css";
 import Card from 'react-bootstrap/Card';
-
+import API from "../../utils/API";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 // images 
-import France from "../homepage/images/france.jpeg";
-import Seattle from "../homepage/images/seattle.jpeg";
-import Peru from "../homepage/images/peru.jpeg";
-import Thailand from "../homepage/images/thailand.jpeg";
-import Venice from "../homepage/images/venice.jpeg";
+// import France from "../homepage/images/france.jpeg";
+// import Seattle from "../homepage/images/seattle.jpeg";
+// import Peru from "../homepage/images/peru.jpeg";
+// import Thailand from "../homepage/images/thailand.jpeg";
+// import Venice from "../homepage/images/venice.jpeg";
+
+
 
 function ProfilePage() {
+  const [purchased, setPurchased] = useState([]);
+  const [saved, setSaved] = useState([]);
+  const loadPurchased = async () => {
+    try {
+      const token = localStorage.getItem("id_token")
+      console.log(token)
+      const response = await API.getPurchasedItineraries(token);
+      console.log(response)
+      const purchased = response.data.purchased_itinerary   
+      const saved = response.data.saved_itinerary
+      console.log("purchased",purchased.shift(), "saved", saved.shift())
+      setPurchased(purchased)
+      setSaved(saved)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    loadPurchased();
+  }, []);
+
+  // const handleRating = (rating) => {
+  //   let sum = 0;
+  //   if (rating.length > 0) {
+  //     for (let note of rating) {
+  //       sum += note;
+  //     }
+  //     return sum / rating.length;
+  //   }
+  //   return 0;
+  // };
+
+
+
   return (
     <>
-    <div className="itineraries">
+
+<div className="section3">
+        <h2>Purchased Itineraries</h2>
+      </div>
+      <div className="profileCards">
+        {purchased.map((card) => (
+          <Card className="profileCard">
+            <Card.Img className="cardImg" src={card.image} />
+            <Card.Body>
+              <Card.Title>{card.title}</Card.Title>
+              <Card.Text>{card.description}</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+            </Card.Footer>
+          </Card>
+        ))}
+      </div>
+      <div className="section3">
+        <h2>Saved Itineraries</h2>
+      </div>
+      <div className="profileCards">
+        {saved.map((card) => (
+          <Card className="profileCard">
+            <Card.Img className="cardImg" src={card.image} />
+            <Card.Body>
+              <Card.Title>{card.title}</Card.Title>
+              <Card.Text>{card.description}</Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+            </Card.Footer>
+          </Card>
+        ))}
+      </div>
+    {/* <div className="itineraries">
     <h2>My Itineraries</h2>
     </div>
       <div className="profileCards">
@@ -78,7 +151,7 @@ function ProfilePage() {
         <small>Rating: ⭐⭐⭐⭐⭐</small>
       </Card.Footer>
     </Card>
-    </div>
+    </div> */}
   </>
   );
 }
