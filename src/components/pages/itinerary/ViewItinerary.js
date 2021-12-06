@@ -24,7 +24,7 @@ function ViewItinerary(props) {
   //   return "Not yet rated";
   // };
 
-  console.log(props.viewItin.days);
+  console.log(props.viewItin);
   return (
 
     <div className="youritinerarycard">

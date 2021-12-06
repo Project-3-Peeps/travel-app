@@ -64,6 +64,14 @@ function Homepage(props) {
     history.push("/ItineraryCard");
   };
 
+  const seeDetails = async (event) => {
+    const id = event.target.getAttribute('dataKey')
+
+    const itinerary = await API.itineraryById(id)
+    console.log(itinerary.data)
+    props.setViewItin(itinerary.data)
+    history.push('/ViewItinerary')
+  }
 
 
   return (
@@ -120,10 +128,8 @@ function Homepage(props) {
             </Card.Body>
             <Card.Footer className="card-footer">
               {/* <small>Rating: {handleRating(card.ratings)}</small> */}
-              <Link to="/ViewItinerary" className="details">
-                <small>See Details</small>
-              </Link>
-
+              {/* to="/ViewItinerary" */}
+              <button className="btn" dataKey={card._id} onClick={seeDetails}>See Details</button>
             </Card.Footer>
           </Card>
         ))}

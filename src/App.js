@@ -84,7 +84,7 @@ function App() {
           <ViewItinerary viewItin={viewItin}/>
         </Route>
         <Route path="/">
-          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} />
+          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} viewItin={viewItin} setViewItin={setViewItin} />
         </Route>
       </Switch>
 
