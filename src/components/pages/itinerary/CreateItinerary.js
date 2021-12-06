@@ -82,6 +82,7 @@ function CreateItinerary(props) {
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
+    console.log("token", token)
     const response = await API.createItinerary(token, newItinerary);
     // props.setViewItin([response.data]);
     console.log(response)

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-// import ReactDOM from 'react-dom'
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ItineraryCard.css";
 import Card from "react-bootstrap/Card";
-// import CreateItinerary from "./CreateItinerary";
+import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
-import auth from "../../utils/auth"
 
 function ItineraryCard(props) {
 
@@ -20,21 +18,21 @@ function ItineraryCard(props) {
     return 0;
   };
 
-  // const submitPurchase = async (event) => {
-  //   event.preventDefault()
-  //   try {
-  //     const token = auth.getToken()
-  //     const _id = {_id: event.target.getAttribute('dataKey')}
-  //     console.log(event.target.getAttribute('dataKey'))
-  //     const res = await API.purchaseItinerary(token, _id)
-  //     if (res){
-  //       alert('Itinerary purchase')
-  //       console.log('worked')
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
+  const submitPurchase = async (event) => {
+    event.preventDefault()
+    try {
+      const token = localStorage.getItem("id_token")
+      const _id = {_id: event.target.getAttribute('dataKey')}
+      console.log(event.target.getAttribute('dataKey'))
+      const res = await API.purchaseItinerary(token, _id)
+      if (res){
+        alert('Itinerary purchase')
+        console.log('worked')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -52,9 +50,9 @@ function ItineraryCard(props) {
             <Card.Text>{itin.description}</Card.Text>
             {/* Price */}
             <Card.Text>{itin.price}</Card.Text>
+            <button datakey={itin._id} onClick={submitPurchase}>Purchase</button>
             {/* Preview End */}
             {/*  */}
-            <button dataKey={itin._id}>here</button>
             {itin.days.map((day) => {
               <ul className="list-group">
                 {/* if (!loggedIn) {hide} */}
