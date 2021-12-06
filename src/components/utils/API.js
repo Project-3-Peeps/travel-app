@@ -9,7 +9,7 @@ const URL_PREFIX = "http://localhost:3001";
 const API = {
   // TODO:
   getProfile: (token) => {
-    return axios.get(`${URL_PREFIX}/profile`, {
+    return axios.post(`${URL_PREFIX}/api/users/me`, token, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -37,15 +37,40 @@ const API = {
   },
   // user _id must go inside the token
   savedItinerary: (token, itineraryInfo) => {
+    console.log("itinerary info", token, itineraryInfo)
     return axios.get(`${URL_PREFIX}/api/users/savedItinerary`, itineraryInfo, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     });
   },
+  getPurchasedItineraries: (token) => {
+    console.log("here")
+    return axios.post(`${URL_PREFIX}/api/users/purchased`, token, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  },
+  getPoints: (token) => {
+    console.log("get points here")
+    return axios.post(`${URL_PREFIX}/api/users/points`, token, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  },
+  addPoints: (token, _id) => {
+    console.log("add points here")
+    return axios.put(`${URL_PREFIX}/api/users/addpoints`, token, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
   // user _id must go inside the token
-  createItinerary: (token, itineraryData) => {
-    return axios.post(`${URL_PREFIX}/api/users/createItinerary`, itineraryData, {
+  createItinerary: (token, newItinerary) => {
+    return axios.post(`${URL_PREFIX}/api/users/createItinerary`, newItinerary, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -73,6 +98,25 @@ const API = {
           Authorization: `Bearer ${token}`,
         },
       }
+    )
+  },
+  itineraryById: (id) => {
+    return axios.post(
+      `${URL_PREFIX}/api/users/itinerary/${id}`
+    )
+  },
+
+  //post the star rating to the database.... 
+  rateItinerary: (token, ratings) => {
+    console.log(token)
+    console.log(ratings)
+    return axios.put(`${URL_PREFIX}/api/users/rateItinerary`,
+    ratings,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
     )
   }
 };

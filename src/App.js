@@ -9,6 +9,8 @@ import LoginModal from "./components/modals/LoginModal";
 import SignupModal from "./components/modals/SignupModal";
 import NavBar from "./components/NavBar";
 import ItineraryCard from "./components/pages/itinerary/ItineraryCard";
+import ViewItinerary from "./components/pages/itinerary/ViewItinerary";
+import Explore from "./components/pages/explore/Explore";
 // Import API
 import API from "./components/utils/API";
 import auth from "./components/utils/auth";
@@ -18,40 +20,41 @@ import "./NavFooter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [userState, setUserState] = useState({
-    email: "",
-    id: 0,
-  });
-  const [token, setToken] = useState("");
+  // const [userState, setUserState] = useState({
+  //   email: "",
+  //   id: 0,
+  // });
+  // const [token, setToken] = useState("");
+  const [searchInfo, setSearchInfo]= useState([]);
+  const [viewItin, setViewItin]= useState([[]]);
+  // useEffect(() => {
+  //   // console.log(searchInfo);
+  //   // const myToken = auth.getToken();
+  //   console.log("use effected");
+  //   // console.log(myToken);
+  //   // if (myToken) {
+  //   //   API.getProfile(myToken)
+  //   //     .then((res) => {
+  //   //       console.log("worked");
+  //   //       setToken(myToken);
+  //   //       setUserState({
+  //   //         email: res.data.email,
+  //   //         id: res.data.id,
+  //   //       });
+  //   //     })
+  //   //     .catch((err) => {
+  //   //       console.log("failed");
+  //   //       console.log(err);
+  //   //       localStorage.removeItem("token");
+  //   //     });
+  //   // }
+  // }, []);
 
-  const [searchInfo, setSearchInfo] = useState([]);
-  useEffect(() => {
-    const myToken = auth.getToken();
-    console.log("use effected");
-    console.log(myToken);
-    // if (myToken) {
-    //   API.getProfile(myToken)
-    //     .then((res) => {
-    //       console.log("worked");
-    //       setToken(myToken);
-    //       setUserState({
-    //         email: res.data.email,
-    //         id: res.data.id,
-    //       });
-    //     })
-    //     .catch((err) => {
-    //       console.log("failed");
-    //       console.log(err);
-    //       localStorage.removeItem("token");
-    //     });
-    // }
-  }, []);
-
-  const logMeOut = () => {
-    setUserState({ email: "", id: 0 });
-    setToken("");
-    auth.logout();
-  };
+  // const logMeOut = () => {
+  //   setUserState({ email: "", id: 0 });
+  //   setToken("");
+  //   auth.logout();
+  // };
   return (
     <Router>
       <NavBar />
@@ -59,9 +62,10 @@ function App() {
       <Switch>
         <Route path="/CreateItinerary">
           {" "}
-          <CreateItinerary />
+          <CreateItinerary viewItin={viewItin} setViewItin={setViewItin}/>
         </Route>
         <Route path="/ProfilePage">
+          {/* {" "} */}
           <ProfilePage />
         </Route>
         <Route path="/login">
@@ -70,11 +74,17 @@ function App() {
         <Route path="/signup">
           <SignupModal />
         </Route>
+        <Route path="/Explore">
+          <Explore searchInfo={searchInfo} setSearchInfo={setSearchInfo}/>
+        </Route>
         <Route path="/ItineraryCard">
           <ItineraryCard searchInfo={searchInfo} />
         </Route>
+        <Route path="/ViewItinerary">
+          <ViewItinerary viewItin={viewItin}/>
+        </Route>
         <Route path="/">
-          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} />
+          <Homepage searchInfo={searchInfo} setSearchInfo={setSearchInfo} viewItin={viewItin} setViewItin={setViewItin} />
         </Route>
       </Switch>
 

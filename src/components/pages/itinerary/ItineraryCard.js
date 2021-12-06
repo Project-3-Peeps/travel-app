@@ -1,29 +1,33 @@
-import React, { useState } from "react";
-import ReactDOM from 'react-dom'
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./CreateItinerary.css";
+import "./ItineraryCard.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
-import auth from "../../utils/auth"
 
 function ItineraryCard(props) {
 
   const handleRating = (rating) => {
+    // console.log(rating);
+    if (!rating ) {
+
+      return;
+    }
     let sum = 0;
     if (rating.length > 0) {
       for (let note of rating) {
         sum += note;
       }
-      return sum / rating.length;
+      return `${sum / rating.length} out of 5`;
     }
-    return 0;
+    return "Not yet rated";
   };
+
 
   const submitPurchase = async (event) => {
     event.preventDefault()
     try {
-      const token = auth.getToken()
+      const token = localStorage.getItem("id_token")
       const _id = {_id: event.target.getAttribute('dataKey')}
       console.log(event.target.getAttribute('dataKey'))
       const res = await API.purchaseItinerary(token, _id)
@@ -38,9 +42,12 @@ function ItineraryCard(props) {
 
   return (
     <>
+    <h2 className= "searchresultstitle">Search Results</h2>
+    <div className="searchCards">
+      
       {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" key={itin.image} />
+          <Card.Img className="cardImg" src={itin.image}/>
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}
@@ -49,9 +56,9 @@ function ItineraryCard(props) {
             <Card.Text>{itin.description}</Card.Text>
             {/* Price */}
             <Card.Text>{itin.price}</Card.Text>
+            <button datakey={itin._id} onClick={submitPurchase}>Purchase</button>
             {/* Preview End */}
             {/*  */}
-            <button dataKey={itin._id}>here</button>
             {itin.days.map((day) => {
               <ul className="list-group">
                 {/* if (!loggedIn) {hide} */}
@@ -73,6 +80,7 @@ function ItineraryCard(props) {
           </Card.Footer>
         </Card>
       ))}
+    </div>
     </>
   );
 }
