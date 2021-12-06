@@ -104,7 +104,7 @@ const API = {
     return axios.post(
       `${URL_PREFIX}/api/users/itinerary/${id}`
     )
-  }
+  },
 
   //post the star rating to the database.... 
   rateItinerary: (token, ratings) => {
