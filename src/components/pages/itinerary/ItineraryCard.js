@@ -8,15 +8,21 @@ import API from "../../utils/API"
 function ItineraryCard(props) {
 
   const handleRating = (rating) => {
+    // console.log(rating);
+    if (!rating ) {
+
+      return;
+    }
     let sum = 0;
     if (rating.length > 0) {
       for (let note of rating) {
         sum += note;
       }
-      return sum / rating.length;
+      return `${sum / rating.length} out of 5`;
     }
-    return 0;
+    return "Not yet rated";
   };
+
 
   const submitPurchase = async (event) => {
     event.preventDefault()

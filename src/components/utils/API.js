@@ -102,15 +102,18 @@ const API = {
   },
 
   //post the star rating to the database.... 
-  // starRating: (token, ratings) => {
-  //   return axios.post(`${URL_PREFIX}/api/users/starRating`),
-  //   ratings,
-  //   {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   }
-  // }
+  rateItinerary: (token, ratings) => {
+    console.log(token)
+    console.log(ratings)
+    return axios.put(`${URL_PREFIX}/api/users/rateItinerary`,
+    ratings,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    )
+  }
 };
 
 export default API;

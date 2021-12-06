@@ -12,24 +12,50 @@ function ProfilePage() {
 
 // //  const [rating, setRating] = useState(0)
 //  const [rating, setRating] = useState(0)
-//   const handleRating = (rate) => {
-//     // console.log(rating);
-//     setRating(rate/20);
-//     console.log(rate/20)
-//     // console.log(rating)
-//     // if (!rate) {
-//     //   return;
-//     // }
-//     // let sum = 0;
-//     // if (rate.length > 0) {
-//     //   for (let note of rate) {
-//     //     sum += note;
-//     //   }
-//     //   return sum / rate.length;
-//     // }
-//     // return 0;
+ const [rating, setRating] = useState(0)
+  const handleRating = (rating, _id) => {
+   
+    API.rateItinerary(localStorage.getItem("id_token"), {rating, _id}).then((response)=> {
+      console.log(response);
+      
+    })
+    .catch( (err) => {
+      console.log(err)
+    })
+    // console.log(rating);
+    setRating(rating/20);
+    // console.log(rate/20)
+    // console.log(_id)
+    // console.log(rati
+   
+    // if (!rate) {
+    //   return;
+    // }
+    // let sum = 0;
+    // if (rate.length > 0) {
+    //   for (let note of rate) {
+    //     sum += note;
+    //   }
+    //   return sum / rate.length;
+    // }
+    // return 0;
     
-//   };
+  };
+  const displayRating = (rating) => {
+    // console.log(rating);
+    if (!rating ) {
+
+      return;
+    }
+    let sum = 0;
+    if (rating.length > 0) {
+      for (let note of rating) {
+        sum += note;
+      }
+      return `${sum / rating.length} out of 100`;
+    }
+    return "Not yet rated";
+  };
   const [purchased, setPurchased] = useState([]);
   const [saved, setSaved] = useState([]);
   const loadPurchased = async () => {
@@ -48,8 +74,14 @@ function ProfilePage() {
     }
   };
   useEffect(() => {
-    loadPurchased();
-  }, []);
+    if (saved.length === 0) {
+      loadPurchased();
+    }
+    console.log(saved);
+  }, [saved]);
+  // useEffect(() => {
+  //   loadPurchased();
+  // }, []);
 
   return (
     <>
@@ -66,13 +98,13 @@ function ProfilePage() {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+              <Rating onClick={(rating)=> handleRating(rating, card._id)} ratingValue={rating}/>
             </Card.Footer>
           </Card>
         ))}
       </div>
       <div className="section3">
-        <h2>Saved Itineraries</h2>
+        <h2>Your Itineraries</h2>
       </div>
       <div className="profileCards">
         {saved.map((card) => (
@@ -83,7 +115,7 @@ function ProfilePage() {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+            <small>Rating: {displayRating(card.ratings)}</small>
             </Card.Footer>
           </Card>
         ))}
