@@ -63,20 +63,7 @@ function Homepage(props) {
     history.push("/ItineraryCard");
   };
 
-  const handleRating = (rating) => {
-    // console.log(rating);
-    if (!rating) {
-      return;
-    }
-    let sum = 0;
-    if (rating.length > 0) {
-      for (let note of rating) {
-        sum += note;
-      }
-      return sum / rating.length;
-    }
-    return 0;
-  };
+
 
   return (
     <>
@@ -131,10 +118,11 @@ function Homepage(props) {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer className="card-footer">
-              <small>Rating: {handleRating(card.ratings)}</small>
+              {/* <small>Rating: {handleRating(card.ratings)}</small> */}
               <Link to="/ViewItinerary" className="details">
                 <small>See Details</small>
               </Link>
+
             </Card.Footer>
           </Card>
         ))}
