@@ -64,21 +64,40 @@ function Explore(props) {
     history.push("/ItineraryCard");
   };
 
-  const displayRating = (rating) => {
-    // console.log(rating);
-    if (!rating ) {
+  const displayRating = (ratings) => {
+    console.log(ratings);
+
+    if (!ratings ) {
 
       return;
     }
     let sum = 0;
-    if (rating.length > 0) {
-      for (let note of rating) {
-        sum += note;
-      }
-      return `${sum / rating.length} out of 5`;
+
+    if (ratings.length > 0) {
+      // for (let rating in ratings) {
+      //   sum += note;
+      // }
+      ratings.map(rating => sum += rating)
+      return `${Math.floor(sum / ratings.length)} out of 100`;
     }
     return "Not yet rated";
   };
+
+  const submitPurchase = async (event) => {
+    event.preventDefault()
+    try {
+      const token = localStorage.getItem("id_token")
+      const _id = {_id: event.target.getAttribute('dataKey')}
+      console.log(event.target.getAttribute('dataKey'))
+      const res = await API.purchaseItinerary(token, _id)
+      if (res){
+        alert('Itinerary purchase')
+        console.log('worked')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -119,6 +138,8 @@ function Explore(props) {
             <Card.Body>
               <Card.Title>{card.title}</Card.Title>
               <Card.Text>{card.description}</Card.Text>
+              <Card.Text>{card.price}</Card.Text>
+              <button datakey={card._id} onClick={submitPurchase}>Purchase</button>
             </Card.Body>
             <Card.Footer>
               <small>Rating: {displayRating(card.ratings)}</small>

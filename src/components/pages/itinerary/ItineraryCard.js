@@ -18,7 +18,7 @@ function ItineraryCard(props) {
       for (let note of rating) {
         sum += note;
       }
-      return `${sum / rating.length} out of 5`;
+      return `${sum / rating.length} out of 100`;
     }
     return "Not yet rated";
   };

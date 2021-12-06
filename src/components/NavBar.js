@@ -51,6 +51,7 @@ function NavBar() {
     try {
       const token = localStorage.getItem("id_token")
       const myData = await API.getProfile(token)
+      console.log(myData)
       if (myData) {
         console.log(myData)
         const _id = myData.data[0]._id
