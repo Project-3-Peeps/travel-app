@@ -36,8 +36,8 @@ const API = {
     return axios.get(`${URL_PREFIX}/api/users/itinerary`)
   },
   // user _id must go inside the token
-  savedItinerary: (token, itineraryInfo) => {
-    return axios.get(`${URL_PREFIX}/api/users/savedItinerary`, itineraryInfo, {
+  savedItinerary: (token) => {
+    return axios.get(`${URL_PREFIX}/api/users/savedItinerary`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }

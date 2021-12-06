@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 // the css 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProfilePage.css";
 import Card from 'react-bootstrap/Card';
+import API from "../../utils/API"
+import auth from "../../utils/auth"
 
 // images 
 import France from "../homepage/images/france.jpeg";
@@ -11,7 +13,21 @@ import Peru from "../homepage/images/peru.jpeg";
 import Thailand from "../homepage/images/thailand.jpeg";
 import Venice from "../homepage/images/venice.jpeg";
 
+
 function ProfilePage() {
+  const [myItin, setMyItin] = useState({})
+  const [purchasedItin, setPurchasedItin] = useState({})
+  
+  const saveItineraries = async () => {
+    const token = auth.getToken()
+    const {saved_itinerary, purchased_itinerary} = await API.savedItinerary(token)
+    console.log(saved_itinerary)
+    console.log(purchased_itinerary)
+  }
+  
+  useEffect(() => {
+    saveItineraries()
+  })
   return (
     <>
       <div className="itineraries">
