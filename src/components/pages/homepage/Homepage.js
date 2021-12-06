@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Rating } from 'react-simple-star-rating';
 // this is the css
 // import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";

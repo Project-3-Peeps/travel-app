@@ -66,7 +66,7 @@ function ProfilePage() {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+              <Rating onClick={handleRating} ratingValue={rating}/>
             </Card.Footer>
           </Card>
         ))}
@@ -83,7 +83,7 @@ function ProfilePage() {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              {/* <small>Rating: {handleRating(card.ratings)}*</small> */}
+              <Rating onClick={handleRating} ratingValue={rating}/>
             </Card.Footer>
           </Card>
         ))}
