@@ -17,6 +17,7 @@ import auth from "../components/utils/auth";
 // New imports
 import Modal from "react-bootstrap/Modal";
 import Tab from "react-bootstrap/Tab";
+import Button from "react-bootstrap/Button";
 // import LoginForm from "react-bootstrap/Form";
 // import SignUpForm from "react-bootstrap/Form";
 
@@ -69,10 +70,16 @@ function NavBar() {
               <Link className="appTitle" to="/">
                 Triptinerary
               </Link>
-            </Col>
+              </Col>
+            
+          
             <Col className="linkPlacement">
               {auth.loggedIn() ? (
-                <>
+                <>{/* Add Points */}
+            <Nav.Item className="add-points">
+              <Button className="btn-sm">Add Points</Button>
+              <h7 className="pointspace">My Points:</h7>
+            </Nav.Item>
                   <Nav.Link
                     className="loginLinks"
                     // NEW

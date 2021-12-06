@@ -1,3 +1,5 @@
+//This is the star rating package import
+import { Rating } from 'react-simple-star-rating'
 import React, { useState, useEffect } from "react";
 // the css 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -7,6 +9,27 @@ import API from "../../utils/API"
 import auth from "../../utils/auth"
 
 function ProfilePage() {
+
+//  const [rating, setRating] = useState(0)
+ const [rating, setRating] = useState(0)
+  const handleRating = (rate) => {
+    // console.log(rating);
+    setRating(rate/20);
+    console.log(rate/20)
+    // console.log(rating)
+    // if (!rate) {
+    //   return;
+    // }
+    // let sum = 0;
+    // if (rate.length > 0) {
+    //   for (let note of rate) {
+    //     sum += note;
+    //   }
+    //   return sum / rate.length;
+    // }
+    // return 0;
+    
+  };
   const [purchased, setPurchased] = useState([]);
   const [saved, setSaved] = useState([]);
   const loadPurchased = async () => {
