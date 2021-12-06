@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 // import auth from "../../utils/auth"
 
 function CreateItinerary(props) {
-  let history = useHistory()
+  let history = useHistory();
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     creator: "Change this later",
@@ -78,14 +78,14 @@ function CreateItinerary(props) {
     event.preventDefault();
     console.log("submit");
     console.log(newItinerary);
-    props.setViewItin(newItinerary)
+    props.setViewItin(newItinerary);
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
     const response = await API.createItinerary(token, newItinerary);
     // props.setViewItin([response.data]);
-    console.log(response)
-    window.search = response
+    console.log(response);
+    window.search = response;
     // window.location.assign("/ViewItinerary");
     history.push("/ViewItinerary");
   };
@@ -204,13 +204,13 @@ function CreateItinerary(props) {
                 />
               </Form.Group>
               {/* Add Activity End */}
-              <Button
+              {/* <Button
                 className="btn-add rounded-pill m-2"
                 variant="success"
                 size="md"
               >
                 + Add Day
-              </Button>
+              </Button> */}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
