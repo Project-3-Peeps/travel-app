@@ -16,10 +16,10 @@ import Venice from "../homepage/images/venice.jpeg";
 function ProfilePage() {
 
 //  const [rating, setRating] = useState(0)
- const [rate, setRate] = useState(0)
+ const [rating, setRating] = useState(0)
   const handleRating = (rate) => {
     // console.log(rating);
-    setRate(rate/20);
+    setRating(rate/20);
     console.log(rate/20)
     // console.log(rating)
     // if (!rate) {
@@ -51,7 +51,7 @@ function ProfilePage() {
             </Card.Text>
           </Card.Body>
           <Card.Footer>
-          <Rating onClick={handleRating} ratingValue={rate}/>
+          <Rating onClick={handleRating} ratingValue={rating}/>
           </Card.Footer>
         </Card>
         <Card className="featuredCard">
