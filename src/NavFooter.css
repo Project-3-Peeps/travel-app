@@ -12,8 +12,9 @@
 .backgroundColor {
   background: #e0e6e0;;
 }
-.linkPlacement {
 
+
+.linkPlacement {
 display: flex;
 justify-content: flex-end;
 }
