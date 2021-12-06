@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./CreateItinerary.css";
+import "./ItineraryCard.css";
 import Card from "react-bootstrap/Card";
 import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
 
 function ItineraryCard(props) {
-  console.log(props.searchInfo[0]);
 
   const handleRating = (rating) => {
     let sum = 0;
@@ -37,9 +36,12 @@ function ItineraryCard(props) {
 
   return (
     <>
+    <h2 className= "searchresultstitle">Search Results</h2>
+    <div className="searchCards">
+      
       {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" key={itin.image} />
+          <Card.Img className="cardImg" src={itin.image}/>
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}
@@ -72,6 +74,7 @@ function ItineraryCard(props) {
           </Card.Footer>
         </Card>
       ))}
+    </div>
     </>
   );
 }

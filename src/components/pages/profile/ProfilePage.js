@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 // the css 
 import "bootstrap/dist/css/bootstrap.min.css";
-import  "./ProfilePage.css";
+import "./ProfilePage.css";
 import Card from 'react-bootstrap/Card';
 import API from "../../utils/API";
 import axios from "axios";

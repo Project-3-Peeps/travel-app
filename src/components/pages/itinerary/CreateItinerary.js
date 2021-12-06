@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import { Form, Button, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
+// import token from "../../utils/auth";
 import auth from "../../utils/auth";
 import "./CreateItinerary.css";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
+import { useHistory } from "react-router-dom";
+// import auth from "../../utils/auth"
 
-function CreateItinerary() {
+function CreateItinerary(props) {
+  let history = useHistory()
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     creator: "Change this later",
@@ -74,14 +78,17 @@ function CreateItinerary() {
     event.preventDefault();
     console.log("submit");
     console.log(newItinerary);
+    props.setViewItin(newItinerary)
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
     console.log("token", token)
     const response = await API.createItinerary(token, newItinerary);
-    console.log(response);
-    window.search = response;
-    window.location.assign("/Itinerary Card");
+    // props.setViewItin([response.data]);
+    console.log(response)
+    window.search = response
+    // window.location.assign("/ViewItinerary");
+    history.push("/ViewItinerary");
   };
 
   return (

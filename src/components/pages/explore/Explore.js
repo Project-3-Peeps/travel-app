@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 // this is the css
 // import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./Homepage.css";
+import "./Explore.css";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import FormControl from "react-bootstrap/FormControl";
@@ -17,32 +16,33 @@ import { useHistory } from "react-router-dom";
 
 console.log(token);
 
-function Homepage(props) {
+function Explore(props) {
   let history = useHistory();
   //sets up a state variable for "city"
   const [city, setCity] = useState("");
   const [itins, setItins] = useState([]);
 
   const loadFeatured = async () => {
-    try {
-      const response = await API.getAllItineraries();
-      console.log(response);
+    try{
+      const response = await API.getAllItineraries()
+      console.log(response)
       // response.data.map((itin) => {
       //   console.log(itin.description)
       //   setItins(result => [...result, itin])
       // })
-      setItins([...response.data]);
+      setItins([...response.data])
       // console.log(itins)
-    } catch (err) {
-      console.log(err);
+    } catch(err){
+      console.log(err)
     }
   };
   useEffect(() => {
-    if (itins.length === 0) {
-      loadFeatured();
+    if(itins.length === 0 ) {
+      
+    loadFeatured()
     }
     console.log(itins);
-  }, [itins]);
+  }, [itins])
 
   const handleInputChange = (event) => {
     //get name and value of input triggering the change
@@ -65,7 +65,7 @@ function Homepage(props) {
 
   const handleRating = (rating) => {
     // console.log(rating);
-    if (!rating) {
+    if (!rating ) {
       return;
     }
     let sum = 0;
@@ -81,15 +81,17 @@ function Homepage(props) {
   return (
     <>
       {/* this is the search section  */}
-      <div className="section1">
-        <h1>Explore and share travel itineraries</h1>
+      <div className="titleformarea">
+        <h2>All Itineraries</h2>
+       
+        <div>
         <Form
           className="searchForm"
           onSubmit={() => API.searchCity(token, city)}
         >
           <FormControl
             type="search"
-            placeholder="Search for a city..."
+            placeholder="Search by city..."
             value={city}
             name="city"
             onChange={handleInputChange}
@@ -102,39 +104,22 @@ function Homepage(props) {
             Search
           </Button>
         </Form>
-      </div>
-      {/* this is the "about" section  */}
-      {/* <div className="section2">
-        <h2>About</h2>
-        <div className="aboutCards">
-          <Card className="aboutCard">
-            <h4>Get curated itineraries from travelers just like you!</h4>
-          </Card>
-          <Card className="aboutCard">
-            <h4>Share your personal itineraries with the world!</h4>
-          </Card>
-          <Card className="aboutCard">
-            <h4>You can buy an itinerary and rate your experience!</h4>
-          </Card>
         </div>
-      </div> */}
-      {/* this is the featured section  */}
-      <div className="section3">
-        <h2>Featured Itineraries</h2>
+      </div>
+     
+      <div className="">
+        
       </div>
       <div className="featuredCards">
-        {itins.slice(0, 4).map((card) => (
+        {itins.map((card) => (
           <Card className="featuredCard">
             <Card.Img className="cardImg" src={card.image} />
             <Card.Body>
               <Card.Title>{card.title}</Card.Title>
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
-            <Card.Footer className="card-footer">
+            <Card.Footer>
               <small>Rating: {handleRating(card.ratings)}</small>
-              <Link to="/ViewItinerary" className="details">
-                <small>See Details</small>
-              </Link>
             </Card.Footer>
           </Card>
         ))}
@@ -143,4 +128,4 @@ function Homepage(props) {
   );
 }
 
-export default Homepage;
+export default Explore;
