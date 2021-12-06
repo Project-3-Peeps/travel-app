@@ -10,7 +10,7 @@ import { useHistory } from "react-router-dom";
 // import auth from "../../utils/auth"
 
 function CreateItinerary(props) {
-  let history = useHistory()
+  let history = useHistory();
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [newItinerary, setNewItinerary] = useState({
     creator: "Change this later",
@@ -70,22 +70,22 @@ function CreateItinerary(props) {
         [event.target.name]: event.target.value,
       });
     }
-    console.log(newItinerary)
+    console.log(newItinerary);
   };
 
   // Once the form has been submitted, this function will post to the backend
   const handleFormSubmit = async (event) => {
     // Preventing default behavior of the form submit (which is to refresh the page)
     event.preventDefault();
-    props.setViewItin(newItinerary)
+    props.setViewItin(newItinerary);
     // send the newItinerary to the backend using axios.
     // render the res from backend
     const token = auth.getToken();
-    console.log("token", token)
+    console.log("token", token);
     const response = await API.createItinerary(token, newItinerary);
     // props.setViewItin([response.data]);
-    console.log(response)
-    window.search = response
+    console.log(response);
+    window.search = response;
     // window.location.assign("/ViewItinerary");
     history.push("/ViewItinerary");
   };
@@ -204,13 +204,6 @@ function CreateItinerary(props) {
                 />
               </Form.Group>
               {/* Add Activity End */}
-              <Button
-                className="btn-add rounded-pill m-2"
-                variant="success"
-                size="md"
-              >
-                + Add Day
-              </Button>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
@@ -218,7 +211,7 @@ function CreateItinerary(props) {
         <Form.Group className="text-center">
           <Button
             className="btn-submit rounded-pill m-2"
-            size="md"
+            size="lg"
             onClick={handleFormSubmit}
           >
             Save Itinerary
