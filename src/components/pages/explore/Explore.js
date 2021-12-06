@@ -64,9 +64,10 @@ function Explore(props) {
     history.push("/ItineraryCard");
   };
 
-  const handleRating = (rating) => {
+  const displayRating = (rating) => {
     // console.log(rating);
     if (!rating ) {
+
       return;
     }
     let sum = 0;
@@ -74,9 +75,9 @@ function Explore(props) {
       for (let note of rating) {
         sum += note;
       }
-      return sum / rating.length;
+      return `${sum / rating.length} out of 5`;
     }
-    return 0;
+    return "Not yet rated";
   };
 
   return (
@@ -120,7 +121,7 @@ function Explore(props) {
               <Card.Text>{card.description}</Card.Text>
             </Card.Body>
             <Card.Footer>
-              <small>Rating: {handleRating(card.ratings)}</small>
+              <small>Rating: {displayRating(card.ratings)}</small>
             </Card.Footer>
           </Card>
         ))}
