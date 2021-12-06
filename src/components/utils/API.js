@@ -9,7 +9,7 @@ const URL_PREFIX = "http://localhost:3001";
 const API = {
   // TODO:
   getProfile: (token) => {
-    return axios.get(`${URL_PREFIX}/profile`, {
+    return axios.post(`${URL_PREFIX}/api/users/me`, token, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -61,7 +61,8 @@ const API = {
     });
   },
   addPoints: (token, _id) => {
-    return axios.put(`${URL_PREFIX}/api/users/createItinerary`, token, _id, {
+    console.log("add points here")
+    return axios.put(`${URL_PREFIX}/api/users/addpoints`, token, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

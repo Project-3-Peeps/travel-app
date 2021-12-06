@@ -20,8 +20,8 @@
 .pointspace {
   margin-left: 20px;;
 }
-.linkPlacement {
 
+.linkPlacement {
 display: flex;
 justify-content: space-between;
 
