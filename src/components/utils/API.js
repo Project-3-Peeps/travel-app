@@ -74,7 +74,18 @@ const API = {
         },
       }
     )
-  }
+  },
+
+  //post the star rating to the database.... 
+  // starRating: (token, ratings) => {
+  //   return axios.post(`${URL_PREFIX}/api/users/starRating`),
+  //   ratings,
+  //   {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   }
+  // }
 };
 
 export default API;

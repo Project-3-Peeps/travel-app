@@ -4,18 +4,28 @@
  
 }
 
-.titlePlacement {
-
-
-}
 
 .backgroundColor {
   background: #e0e6e0;;
 }
+.add-points {
+  
+  display:flex;
+  justify-content: flex-start;
+  padding: 5px;
+  align-items: center;
+  
+  margin-right: 10px;;
+}
+.pointspace {
+  margin-left: 20px;;
+}
 .linkPlacement {
 
 display: flex;
-justify-content: flex-end;
+justify-content: space-between;
+
+flex-wrap: nowrap;
 }
 .appTitle {
   text-decoration: none;

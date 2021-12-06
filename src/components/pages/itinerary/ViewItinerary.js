@@ -49,7 +49,7 @@ console.log(props.viewItin);
                   </li>;
                 })}
               </ul>;
-            })} */}
+            })}  */}
           </Card.Body>
           <Card.Footer>
             {/* <small> Rating: {props.viewItin.ratings} </small> */}
