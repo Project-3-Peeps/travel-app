@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import ReactDOM from 'react-dom'
+// import ReactDOM from 'react-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./CreateItinerary.css";
+import "./ItineraryCard.css";
 import Card from "react-bootstrap/Card";
-import CreateItinerary from "./CreateItinerary";
+// import CreateItinerary from "./CreateItinerary";
 import API from "../../utils/API"
 import auth from "../../utils/auth"
 
@@ -20,27 +20,30 @@ function ItineraryCard(props) {
     return 0;
   };
 
-  const submitPurchase = async (event) => {
-    event.preventDefault()
-    try {
-      const token = auth.getToken()
-      const _id = {_id: event.target.getAttribute('dataKey')}
-      console.log(event.target.getAttribute('dataKey'))
-      const res = await API.purchaseItinerary(token, _id)
-      if (res){
-        alert('Itinerary purchase')
-        console.log('worked')
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
+  // const submitPurchase = async (event) => {
+  //   event.preventDefault()
+  //   try {
+  //     const token = auth.getToken()
+  //     const _id = {_id: event.target.getAttribute('dataKey')}
+  //     console.log(event.target.getAttribute('dataKey'))
+  //     const res = await API.purchaseItinerary(token, _id)
+  //     if (res){
+  //       alert('Itinerary purchase')
+  //       console.log('worked')
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   return (
     <>
+    <h2 className= "searchresultstitle">Search Results</h2>
+    <div className="searchCards">
+      
       {props.searchInfo[0].map((itin) => (
         <Card className="featuredCard" key={itin._id}>
-          <Card.Img className="cardImg" key={itin.image} />
+          <Card.Img className="cardImg" src={itin.image}/>
           <Card.Body>
             {/* Itinerary Preview Section */}
             {/* Title */}
@@ -73,6 +76,7 @@ function ItineraryCard(props) {
           </Card.Footer>
         </Card>
       ))}
+    </div>
     </>
   );
 }

@@ -7,18 +7,19 @@ import LoginModal from "./modals/LoginModal";
 // this is the css and bootstrap
 import "../NavFooter.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import auth from "../components/utils/auth";
 // New imports
 import Modal from "react-bootstrap/Modal";
 import Tab from "react-bootstrap/Tab";
-import LoginForm from "react-bootstrap/Form";
-import SignUpForm from "react-bootstrap/Form";
-import auth from "./utils/auth";
+// import LoginForm from "react-bootstrap/Form";
+// import SignUpForm from "react-bootstrap/Form";
+
 
 // Import CSS
 import "../components/modals/Modals.css";
@@ -57,8 +58,8 @@ function NavBar() {
                     </Link>
                   </Nav.Link>
                   <Nav.Link>
-                    <Link className="popOutLinks" to="/ItineraryCard">
-                      Itinerary Card
+                    <Link className="popOutLinks" to="/Explore">
+                      Explore All Itineraries
                     </Link>
                   </Nav.Link>
                 </Nav>
@@ -80,8 +81,8 @@ function NavBar() {
                   >
                     Logout
                   </Nav.Link>
-                  <Nav.Link className="loginLinks" to="/Profile">
-                    Profile
+                  <Nav.Link><Link className="loginLinks" to="/ProfilePage">
+                    Profile</Link>
                   </Nav.Link>
                 </>
               ) : (
