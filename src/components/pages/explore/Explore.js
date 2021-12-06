@@ -64,18 +64,21 @@ function Explore(props) {
     history.push("/ItineraryCard");
   };
 
-  const displayRating = (rating) => {
-    // console.log(rating);
-    if (!rating ) {
+  const displayRating = (ratings) => {
+    console.log(ratings);
+
+    if (!ratings ) {
 
       return;
     }
     let sum = 0;
-    if (rating.length > 0) {
-      for (let note of rating) {
-        sum += note;
-      }
-      return `${sum / rating.length} out of 100`;
+
+    if (ratings.length > 0) {
+      // for (let rating in ratings) {
+      //   sum += note;
+      // }
+      ratings.map(rating => sum += rating)
+      return `${Math.floor(sum / ratings.length)} out of 100`;
     }
     return "Not yet rated";
   };

@@ -73,15 +73,17 @@ function ProfilePage() {
       console.log(err);
     }
   };
-  useEffect(() => {
-    if (saved.length === 0) {
-      loadPurchased();
-    }
-    console.log(saved);
-  }, [saved]);
   // useEffect(() => {
-  //   loadPurchased();
-  // }, []);
+  //   if (saved.length === 0) {
+  //     loadPurchased();
+  //   }
+  //   console.log(saved);
+  // }, [saved]);
+
+  useEffect(() => {
+    
+    loadPurchased();
+  }, []);
 
   return (
     <>
