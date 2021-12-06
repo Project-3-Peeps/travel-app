@@ -75,10 +75,26 @@ function Explore(props) {
       for (let note of rating) {
         sum += note;
       }
-      return `${sum / rating.length} out of 5`;
+      return `${sum / rating.length} out of 100`;
     }
     return "Not yet rated";
   };
+
+  const submitPurchase = async (event) => {
+    event.preventDefault()
+    try {
+      const token = localStorage.getItem("id_token")
+      const _id = {_id: event.target.getAttribute('dataKey')}
+      console.log(event.target.getAttribute('dataKey'))
+      const res = await API.purchaseItinerary(token, _id)
+      if (res){
+        alert('Itinerary purchase')
+        console.log('worked')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -119,6 +135,8 @@ function Explore(props) {
             <Card.Body>
               <Card.Title>{card.title}</Card.Title>
               <Card.Text>{card.description}</Card.Text>
+              <Card.Text>{card.price}</Card.Text>
+              <button datakey={card._id} onClick={submitPurchase}>Purchase</button>
             </Card.Body>
             <Card.Footer>
               <small>Rating: {displayRating(card.ratings)}</small>
