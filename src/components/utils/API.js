@@ -52,6 +52,21 @@ const API = {
       }
     });
   },
+  getPoints: (token) => {
+    console.log("get points here")
+    return axios.post(`${URL_PREFIX}/api/users/points`, token, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
+  },
+  addPoints: (token, _id) => {
+    return axios.put(`${URL_PREFIX}/api/users/createItinerary`, token, _id, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  },
   // user _id must go inside the token
   createItinerary: (token, newItinerary) => {
     return axios.post(`${URL_PREFIX}/api/users/createItinerary`, newItinerary, {
