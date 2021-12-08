@@ -45,6 +45,14 @@ mongoose
 
 ## Screenshots
 
+![Home](https://user-images.githubusercontent.com/89039793/145265246-8ab19f87-33bf-46d5-a8f7-d386cf05b18d.PNG)
+
+
+![Explore](https://user-images.githubusercontent.com/89039793/145265268-291be55a-d3de-4de1-b7e1-072a356ebc3d.PNG)
+
+![Create](https://user-images.githubusercontent.com/89039793/145265281-56799798-3999-446b-a5fd-6b92e3603549.PNG)
+
+
 ## Questions
 
 Contact our team if you have any questions:
